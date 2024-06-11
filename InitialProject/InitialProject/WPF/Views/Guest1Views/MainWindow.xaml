@@ -1,0 +1,44 @@
+﻿<Window x:Class="InitialProject.WPF.Views.Guest1Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InitialProject.WPF.Views.Guest1Views"
+        xmlns:lex="clr-namespace:InitialProject.Localization"
+        mc:Ignorable="d"
+        Title="Accommodation booking service" Height="750" Width="1400" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid Style="{DynamicResource GridStyle}">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Height="70" Width="1400" Style="{DynamicResource MainStackPanelStyle}">
+            <Image Height="60" Width="60" Margin="70,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"></Image>
+            <Label Content="{lex:Loc Language}" Height="40" Width="110" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="590,0,0,0" Style="{DynamicResource LabelStyle}"/>
+            <ComboBox Height="40" Width="100" FontSize="18" Margin="0,10,10,10" VerticalContentAlignment="Center" SelectedValue="{Binding SelectedLanguage, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="Content" SelectionChanged="ChangeLanguage">
+                <ComboBoxItem>English</ComboBoxItem>
+                <ComboBoxItem>Serbian</ComboBoxItem>
+            </ComboBox>
+            <Label Content="{lex:Loc DarkTheme}" Height="40" Width="110" FontSize="18" Margin="10,0,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Style="{DynamicResource LabelStyle}"></Label>
+            <ToggleButton x:Name="DarkTheme" Content="{Binding ThemeButton}" Width="60" Height="40" FontSize="18" Checked="DarkTheme_Checked" Unchecked="DarkTheme_Unchecked" Style="{DynamicResource ToggleButtonStyle}"/>
+            <Button Height="40" Width="40" Margin="20,0,20,0" Click="NotificationsButton_Click">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Image Source="../../../Resources/Images/bluebell.png"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button Height="40" Width="40" Margin="0,0,20,0" Click="YourProfileButton_Click">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Image Source="../../../Resources/Images/blueuser.png"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button Content="{lex:Loc SignOut}" FontSize="18" Height="40" Width="120" Click="SignOutButton_Click" Style="{DynamicResource ButtonStyle}"></Button>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="0,80,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Height="40" Width="800" Style="{DynamicResource StackPanelStyle}">
+            <Button Content="{lex:Loc Accommodations}" MinWidth="200" FontSize="18" Click="AccommodationsButton_Click" Style="{DynamicResource ButtonStyle}"/>
+            <Button Content="{lex:Loc Reservations}" MinWidth="200" FontSize="18" Click="ReservationsButton_Click" Style="{DynamicResource ButtonStyle}"/>
+            <Button Content="{lex:Loc Reviews}" MinWidth="200" FontSize="18" Style="{DynamicResource ButtonStyle}" Click="ReviewsButton_Click" />
+            <Button Content="Forum" MinWidth="200" FontSize="18" Style="{DynamicResource ButtonStyle}" Click="ForumButton_Click"/>
+        </StackPanel>
+        <Frame x:Name="MainPreview" Margin="0,120,0,0"></Frame>
+    </Grid>
+</Window>

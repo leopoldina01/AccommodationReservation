@@ -1,0 +1,77 @@
+﻿<Window x:Class="InitialProject.WPF.Views.OwnerViews.RequestDeclinedForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InitialProject.WPF.Views.OwnerViews"
+        mc:Ignorable="d"
+        Title="Request declined comment" Height="480" Width="450" WindowStartupLocation="CenterScreen">
+
+    <Window.InputBindings>
+        <KeyBinding Command="{Binding CloseWindowCommand}" Gesture="CTRL+O"/>
+        <KeyBinding Command="{Binding ConfirmDeclineCommand}" Gesture="CTRL+D" />
+    </Window.InputBindings>
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../Styles/OwnerDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid Background="{StaticResource BackgroundWindow}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="18*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="59"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Background="{StaticResource Background}">
+            <StackPanel Grid.Row="0" Margin="10,0,0,0">
+                <StackPanel Grid.Row="0" Orientation="Horizontal">
+                    <TextBlock TextWrapping="Wrap" Text="Guest name:" TextAlignment="Left" Margin="5,0,0,0" Style="{StaticResource BoldTextBloxk}"/>
+                    <TextBlock TextWrapping="Wrap" Text="{Binding SelectedRequest.Reservation.Guest.Username}" TextAlignment="Left" Margin="40,0,0,0" Style="{StaticResource BasicTextBlock}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Orientation="Horizontal">
+                    <TextBlock TextWrapping="Wrap" Text="Accommodation:" TextAlignment="Left" Margin="5,0,0,0" Style="{StaticResource BoldTextBloxk}"/>
+                    <TextBlock TextWrapping="Wrap" Text="{Binding SelectedRequest.Reservation.Accommodation.Name}" TextAlignment="Left" Margin="12,0,0,0" Style="{StaticResource BasicTextBlock}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Orientation="Horizontal">
+                    <TextBlock TextWrapping="Wrap" Text="Country:" TextAlignment="Left" Margin="5,0,0,0" Style="{StaticResource BoldTextBloxk}"/>
+                    <TextBlock TextWrapping="Wrap" Text="{Binding SelectedRequest.Reservation.Accommodation.Location.Country}" TextAlignment="Left" Margin="63,0,0,0" Style="{StaticResource BasicTextBlock}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Orientation="Horizontal">
+                    <TextBlock TextWrapping="Wrap" Text="City:" TextAlignment="Left" Margin="5,0,0,0" Style="{StaticResource BoldTextBloxk}"/>
+                    <TextBlock TextWrapping="Wrap" Text="{Binding SelectedRequest.Reservation.Accommodation.Location.City}" TextAlignment="Left" Margin="89,0,0,0" Style="{StaticResource BasicTextBlock}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Orientation="Horizontal">
+                    <TextBlock TextWrapping="Wrap" Text="Old reservation:" TextAlignment="Left" Margin="5,0,0,0" Style="{StaticResource BoldTextBloxk}"/>
+                    <TextBlock TextWrapping="Wrap" Text="{Binding SelectedRequest.Reservation.StartDate, StringFormat={}{0:dd.MM.yyyy}}" TextAlignment="Left" Margin="19,0,0,0" Style="{StaticResource BasicTextBlock}"/>
+                    <Label Content=" - " Style="{StaticResource BasicLabel}"/>
+                    <TextBlock TextWrapping="Wrap" Text="{Binding SelectedRequest.Reservation.EndDate, StringFormat={}{0:dd.MM.yyyy}}" TextAlignment="Left" Margin="5,0,0,0" Style="{StaticResource BasicTextBlock}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Orientation="Horizontal">
+                    <TextBlock TextWrapping="Wrap" Text="New reservation:" TextAlignment="Left" Margin="5,0,0,0" Style="{StaticResource BoldTextBloxk}"/>
+                    <TextBlock TextWrapping="Wrap" Text="{Binding SelectedRequest.NewStartDate, StringFormat={}{0:dd.MM.yyyy}}" TextAlignment="Left" Margin="13,0,0,0" Style="{StaticResource BasicTextBlock}"/>
+                    <Label Content=" - " Style="{StaticResource BasicLabel}" />
+                    <TextBlock TextWrapping="Wrap" Text="{Binding SelectedRequest.NewEndDate, StringFormat={}{0:dd.MM.yyyy}}" TextAlignment="Left" Margin="5,0,0,0" Style="{StaticResource BasicTextBlock}"/>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+        
+        <Separator Grid.Row="1" VerticalAlignment="Top" Background="Black"/>
+
+        <StackPanel Grid.Row="1">
+            <Label Margin="10,20,0,0" Style="{StaticResource BasicLabel}">Explanation:</Label>
+            <TextBox TextWrapping="Wrap" Width="410"  Margin="10,10,10,0" Height="170" BorderBrush="Black"/>
+        </StackPanel>
+
+        <Separator Grid.Row="2" VerticalAlignment="Top" Background="Black"/>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Background="{StaticResource Background}">
+            <Button Grid.Column="1" Margin="230,0,10,0" Content="Close" Style="{StaticResource CloseButton}" Command="{Binding CloseWindowCommand}"></Button>
+            <Button Grid.Column="1" Margin="20,0,0,0" Content="Confirm" Style="{StaticResource CloseButton}" Command="{Binding ConfirmDeclineCommand}"/>
+        </StackPanel>
+    </Grid>
+</Window>

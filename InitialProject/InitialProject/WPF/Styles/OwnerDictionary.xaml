@@ -1,0 +1,520 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!--#region Colors-->
+    <SolidColorBrush x:Key="BackgroundColor" Color="#7e7892"/>
+    <SolidColorBrush x:Key="HighlightBrushKey" Color="#1E3F66"/>
+    <SolidColorBrush x:Key="BorderBrush" Color="White"/>
+    <SolidColorBrush x:Key="Background" Color="white"/>
+    <SolidColorBrush x:Key="Foreground" Color="#e1ebec" />
+    <SolidColorBrush x:Key="HeaderRow" Color="#ff9900" />
+    <SolidColorBrush x:Key="BackgroundWindow" Color="white" />
+    <SolidColorBrush x:Key="DataGridBackground" Color="White" />
+    <SolidColorBrush x:Key="DataGridForeGround" Color="#142b44" />
+    <SolidColorBrush x:Key="DataGridSelectedBackground" Color="#1d82a0" />
+    <SolidColorBrush x:Key="DataGridSelectedForeground" Color="white" />
+    <SolidColorBrush x:Key="DataGridHoveredBackground" Color="#1d82a0" />
+    <SolidColorBrush x:Key="DataGridHoveredForeground" Color="white" />
+    <SolidColorBrush x:Key="ApplicationBackground" Color="white" />
+    <SolidColorBrush x:Key="BasicTextBlockForeground" Color="Black" />
+    <SolidColorBrush x:Key="BoldTextBloxkForeground" Color="Black" />
+    <SolidColorBrush x:Key="UnderlinedBoldTextBlockForeground" Color="Black" />
+    <SolidColorBrush x:Key="BoldLabelForeground" Color="Black" />
+    <SolidColorBrush x:Key="BasicLabelForeground" Color="Black" />
+    <SolidColorBrush x:Key="MenuBackgroundColor" Color="#1d82a0" />
+    <SolidColorBrush x:Key="MenuGridBackgroundColor" Color="#1d82a0" />
+    <SolidColorBrush x:Key="StandardButtonBackground" Color="#ff9900" />
+    <SolidColorBrush x:Key="StandardButtonForeground" Color="white"/>
+    <SolidColorBrush x:Key="StaandardSelectedButtonBackground" Color="#ff9900" />
+    <SolidColorBrush x:Key="StandardSelectedButtonForeground" Color="Black" />
+    <SolidColorBrush x:Key="StandardHoveredButtonForeground" Color="#ff9900" />
+    <SolidColorBrush x:Key="ListBoxSelectedBackground" Color="#1d82a0" />
+    <SolidColorBrush x:Key="ListBoxSelectedForeground" Color="white" />
+    <SolidColorBrush x:Key="ListBoxButtonBackground" Color="#ff9900" />
+    <SolidColorBrush x:Key="ArrowButtonBackground" Color="#ff9900" />
+    <SolidColorBrush x:Key="ListBoxButtonForeground" Color="white" />
+    <SolidColorBrush x:Key="HoveredButtonColor" Color="AliceBlue" />
+    <SolidColorBrush x:Key="MessageLabelForegroundColor" Color="#ff9900" />
+    <SolidColorBrush x:Key="ButtonDisabledBackground" Color="#ffcc80" />
+    <!--#endregion-->
+    
+    <!--#region MenuStyle-->
+    <Style x:Key="MenuButton" TargetType="Button">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Height" Value="50"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter />
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="{StaticResource MenuBackgroundColor}" />
+                            <Setter Property="Background" Value="{StaticResource HoveredButtonColor}" />
+                        </Trigger>
+
+                        <Trigger Property="IsMouseOver" Value="False">
+                            <Setter Property="Background" Value="{StaticResource MenuBackgroundColor}" />
+                            <Setter Property="Foreground" Value="white" />
+                        </Trigger>
+
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Opacity" Value="0.5"/>
+                        </Trigger>
+
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Foreground" Value="{StaticResource MenuBackgroundColor}" />
+                            <Setter Property="Background" Value="AliceBlue" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="True">
+                            <Setter Property="Cursor" Value="Hand"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="MenuNotificationButton" TargetType="Button">
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Height" Value="40"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter />
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{StaticResource HoveredButtonColor}" />
+                        </Trigger>
+
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter Property="Background" Value="{StaticResource HoveredButtonColor}"/>
+                        </Trigger>
+
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Opacity" Value="0.5"/>
+                        </Trigger>
+
+                        <Trigger Property="IsEnabled" Value="True">
+                            <Setter Property="Cursor" Value="Hand"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="MenuBackground" TargetType="Border">
+        <Setter Property="Background" Value="{StaticResource MenuBackgroundColor}"/>
+    </Style>
+    <Style x:Key="MenuBigBorder" TargetType="Border">
+        <Setter Property="Background" Value="{StaticResource ApplicationBackground}"/>
+    </Style>
+    <Style x:Key="MenuGridBackground" TargetType="Grid">
+        <Setter Property="Background" Value="{StaticResource MenuGridBackgroundColor}"/>
+    </Style>
+    <!--#endregion-->
+    
+    <!--#region GridStyle-->
+    <Style x:Key="GridWindowBackground" TargetType="Grid">
+        <Setter Property="Background" Value="{StaticResource BackgroundWindow}" />
+    </Style>
+    <!--#endregion-->
+    
+    <!--#region LabelStyle-->
+    <Style x:Key="BasicLabel" TargetType="Label">
+        <Setter Property="Label.Foreground" Value="{StaticResource BasicLabelForeground}" />
+        <Setter Property="Label.FontSize" Value="13" />
+    </Style>
+
+    <Style x:Key="BoldLabel" TargetType="Label">
+        <Setter Property="Label.Foreground" Value="{StaticResource BoldLabelForeground}" />
+        <Setter Property="Label.FontSize" Value="13" />
+        <Setter Property="FontWeight" Value="Bold" />
+    </Style>
+
+    <Style x:Key="MessageLabelStyle" TargetType="Label">
+        <Setter Property="Label.Foreground" Value="{StaticResource MessageLabelForegroundColor}" />
+        <Setter Property="Label.FontSize" Value="13" />
+        <Setter Property="FontWeight" Value="Bold" />
+    </Style>
+    <!--#endregion-->
+    
+    <!--#region  ListBoxStyle-->
+    <Style x:Key="ListBoxItem" TargetType="{x:Type ListBoxItem}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                    <Border x:Name="Bd"
+                            BorderThickness="1"
+                            BorderBrush="{StaticResource BorderBrush}"
+                            Background="{StaticResource Background}"
+                            Padding="{TemplateBinding Padding}"
+                            SnapsToDevicePixels="true">
+
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="True"/>
+                                <Condition Property="IsSelected"
+                                            Value="False" />
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Background"
+                                    TargetName="Bd"
+                                    Value="{StaticResource ListBoxSelectedBackground}" />
+                            <Setter Property="Foreground" Value="{StaticResource ListBoxSelectedForeground}" />
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="Selector.IsSelectionActive"
+                                            Value="True" />
+                                <Condition Property="IsSelected"
+                                            Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Background"
+                                    TargetName="Bd"
+                                    Value="{StaticResource ListBoxSelectedBackground}" />
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--#endregion-->
+    
+    <!--#region DataGridStyle-->
+    <Style x:Key="DataGridStyle1" TargetType="{x:Type DataGrid}">
+        <Setter Property="IsReadOnly" Value="True" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="Width" Value="430" />
+        <Setter Property="Height" Value="100" />
+    </Style>
+    
+    <Style x:Key="DataGridRowStyle" TargetType="{x:Type DataGridRow}">
+        <Setter Property="Background" Value="{StaticResource DataGridBackground}" />
+        <Setter Property="Foreground" Value="{StaticResource DataGridForeGround}" />
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource DataGridHoveredBackground}" />
+                <Setter Property="Foreground" Value="{StaticResource DataGridHoveredForeground}" />
+            </Trigger>
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Background" Value="{StaticResource DataGridSelectedBackground}" />
+                <Setter Property="Foreground" Value="{StaticResource DataGridSelectedForeground}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="DataGridCellStyle" TargetType="{x:Type DataGridCell}">
+        <Setter Property="FontSize" Value="13" />
+        <Style.Triggers>
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Background" Value="{StaticResource DataGridSelectedBackground}" />
+                <Setter Property="BorderBrush" Value="{StaticResource HighlightBrushKey}" />
+                <Setter Property="Foreground" Value="{StaticResource DataGridSelectedForeground}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="DataGridHeaderStyle" TargetType="{x:Type DataGridColumnHeader}">
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="Foreground" Value="{StaticResource Foreground}" />
+        <Setter Property="Background" Value="{StaticResource HeaderRow}" />
+        <Setter Property="Height" Value="25"/>
+    </Style>
+    <!--#endregion-->
+    
+    
+    <!--#region TextBlockStyle-->
+    <Style x:Key="BasicTextBlock" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="{StaticResource BasicTextBlockForeground}" />
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="Height" Value="19" />
+    </Style>
+    
+    <Style x:Key="BoldTextBloxk" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="{StaticResource BoldTextBloxkForeground}" />
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="Height" Value="19" />
+        <Setter Property="FontWeight" Value="Bold" />
+    </Style>
+
+    <Style x:Key="UnderlinedBoldTextBlock" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="{StaticResource UnderlinedBoldTextBlockForeground}" />
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="Height" Value="19" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="TextDecorations" Value="Underline" />
+    </Style>
+    <!--#endregion-->
+    
+    <!--#region GroupBoxHeader-->
+    <Style x:Key="GroupBox" TargetType="GroupBox">
+        <Setter Property="BorderBrush" Value="{StaticResource Foreground}"/>
+        <Setter Property="Margin" Value="5,3,5,5" />
+        <Setter Property="HeaderTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <TextBlock Text="{Binding}" FontWeight="Bold" FontSize="13" Style="{StaticResource BoldTextBloxk}"/>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--#endregion-->
+    
+    <!--#region ButtonStyle-->
+    <Style x:Key="CloseButton" TargetType="Button">
+        <Setter Property="Height" Value="25" />
+        <Setter Property="Width" Value="80" />
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter x:Name="Content" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="{StaticResource StandardButtonBackground}" />
+                            <Setter Property="Background" Value="{StaticResource HoveredButtonColor}" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="False">
+                            <Setter Property="Background" Value="{StaticResource StandardButtonBackground}" />
+                            <Setter Property="Foreground" Value="{StaticResource StandardButtonForeground}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Background" Value="{StaticResource ButtonDisabledBackground}" />
+                            <Setter Property="Foreground" Value="white" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="True" >
+                            <Setter Property="Cursor" Value="Hand"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="ListBoxButton" TargetType="Button">
+        <Setter Property="Height" Value="25" />
+        <Setter Property="Width" Value="80" />
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter x:Name="Content" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="{StaticResource StandardButtonBackground}" />
+                            <Setter Property="Background" Value="{StaticResource HoveredButtonColor}" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="False">
+                            <Setter Property="Background" Value="{StaticResource StandardButtonBackground}" />
+                            <Setter Property="Foreground" Value="{StaticResource StandardButtonForeground}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Background" Value="{StaticResource ButtonDisabledBackground}" />
+                            <Setter Property="Foreground" Value="white" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="True" >
+                            <Setter Property="Cursor" Value="Hand"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <Style x:Key="ArrowButton" TargetType="Button">
+        <Setter Property="Height" Value="25" />
+        <Setter Property="Width" Value="25" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter x:Name="Content" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="True">
+                            <Setter Property="Background" Value="{StaticResource ArrowButtonBackground}" />
+                            <Setter Property="Cursor" Value="Hand"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Background" Value="{StaticResource ButtonDisabledBackground}" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{StaticResource HoveredButtonColor}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--#endregion-->
+    
+    <!--#region  TextBoxStyle-->
+    <Style x:Key="ValidationTemplateTextBox" TargetType="{x:Type TextBox}">
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="BorderBrush" Value="White"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Validation.ErrorTemplate">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <AdornedElementPlaceholder Grid.Column="0" Grid.Row="0" x:Name="textBox"/>
+                        <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="Red"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="MultilineTextBox" TargetType="{x:Type TextBox}">
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="BorderBrush" Value="White"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="AcceptsReturn" Value="True" />
+        <Setter Property="VerticalScrollBarVisibility" Value="Visible"/>
+        <Setter Property="HorizontalAlignment" Value="Left" />
+    </Style>
+    <!--#endregion-->
+    
+    <!--#region ButtonStyle-->
+    <Style x:Key="StandardButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="Width" Value="80" />
+        <Setter Property="Height" Value="25" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid Background="{TemplateBinding Background}">
+                        <ContentPresenter x:Name="Content" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="{StaticResource StandardButtonBackground}" />
+                            <Setter Property="Background" Value="{StaticResource HoveredButtonColor}" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="False">
+                            <Setter Property="Background" Value="{StaticResource StandardButtonBackground}" />
+                            <Setter Property="Foreground" Value="{StaticResource StandardButtonForeground}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Background" Value="{StaticResource ButtonDisabledBackground}" />
+                            <Setter Property="Foreground" Value="white" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="True">
+                            <Setter Property="Cursor" Value="Hand"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--#endregion-->
+    
+    <!--#region ComboBoxStyle-->
+    <Style x:Key="ComboBoxStyle" TargetType="{x:Type ComboBoxItem}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ComboBoxItem}">
+                    <Border x:Name="gd" Background="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ComboBox}},Path=Background}">
+
+                        <ContentPresenter />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="ComboBoxItem.IsMouseOver" Value="True">
+                            <Setter TargetName="gd"  Property="Background" Value="{StaticResource DataGridSelectedBackground}"></Setter>
+                            <Setter TargetName="gd"  Property="TextElement.Foreground" Value="White"></Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--#endregion-->
+    
+    <!--#region CalenderStyle-->
+    <Style x:Key="CalenderDayButtonStyle" TargetType="{x:Type CalendarDayButton}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="CalendarDayButton">
+                    <Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="HighlightBackground" 
+                                                        Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" 
+                                                        To="DarkBlue" Duration="0" />
+                                        <ColorAnimation Storyboard.TargetName="ContentText" 
+                                                        Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)" 
+                                                        To="White" Duration="0" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Selected">
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="HighlightBackground" 
+                                                        Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" 
+                                                        To="DarkBlue" Duration="0" />
+                                        <ColorAnimation Storyboard.TargetName="ContentText" 
+                                                        Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)" 
+                                                        To="White" Duration="0" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border x:Name="HighlightBackground" 
+                                Background="DarkBlue" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="1">
+                            <TextBlock x:Name="ContentText" 
+                                       Text="{TemplateBinding Content}" 
+                                       HorizontalAlignment="Center" 
+                                       VerticalAlignment="Center" 
+                                       Foreground="White" />
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--#endregion-->
+</ResourceDictionary>

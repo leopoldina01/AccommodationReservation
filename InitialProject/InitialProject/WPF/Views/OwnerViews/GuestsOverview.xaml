@@ -1,0 +1,31 @@
+﻿<Window x:Class="InitialProject.WPF.Views.GuestsOverview"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InitialProject.WPF.Views"
+        mc:Ignorable="d"
+        Title="Your guests" Height="400" Width="600"  WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="10*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0">
+            <DataGrid Name="DataGridGuests" IsReadOnly="True" ItemsSource="{Binding Reservations, UpdateSourceTrigger=PropertyChanged}" SelectionMode="Single" SelectedItem="{Binding SelectedReservation, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" Height="325" HeadersVisibility="Column" FontSize="14" SelectionChanged="DataGridGuests_SelectionChanged">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Name" Binding="{Binding Guest.Username}" Width="100"/>
+                    <DataGridTextColumn Header="Comming date" Binding="{Binding StartDate}" Width="120"/>
+                    <DataGridTextColumn Header="Leaving date" Binding="{Binding EndDate}" Width="120"/>
+                    <DataGridTextColumn Header="Length of stay" Binding="{Binding LenghtOfStay}" Width="200*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Name="ButtonRate" Content="Rate" Width="100" Height="40" IsEnabled="False" Margin="45,0,30,0" Click="ButtonRate_Click"/>
+            <Button Name="ButtonCancel" Content="Cancel" Width="100" Height="40" Margin="30,0,30,0" Click="ButtonCancel_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

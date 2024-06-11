@@ -1,0 +1,53 @@
+﻿<Window x:Class="InitialProject.WPF.Views.Guest2Views.Guest2MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InitialProject.WPF.Views.Guest2Views"
+        mc:Ignorable="d"
+         WindowStyle="None" WindowStartupLocation="CenterScreen"
+        Title="Guest2MainWindow" Height="768" Width="1024">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="7*"/>
+        </Grid.RowDefinitions>
+        <Grid Background="LightYellow" Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" VerticalAlignment="Top" FontWeight="Bold" Height="96" FontSize="20" Click="ToursButton_Click">
+                <TextBlock Text="Tours" TextWrapping="Wrap" TextAlignment="Center"/>
+            </Button>
+            <Button Grid.Column="1" VerticalAlignment="Top" FontWeight="Bold" Height="96" FontSize="20"  Click="ReservedTours_Click">
+                <TextBlock Text="Reserved Tours" TextWrapping="Wrap" TextAlignment="Center"/>
+            </Button>
+            <Button Grid.Column="2" VerticalAlignment="Top" FontWeight="Bold" Height="96" FontSize="20"  Click="TourRequests_Click">
+                <TextBlock Text="Regular Tour Requests" TextWrapping="Wrap" TextAlignment="Center"/>
+            </Button>
+            <Button Grid.Column="3" VerticalAlignment="Top" FontWeight="Bold" Height="96" FontSize="20" HorizontalAlignment="Right" Width="128" Click="ComplexTours_Click">
+                <TextBlock Text="Complex Tour Requests" TextWrapping="Wrap" TextAlignment="Center"/>
+            </Button>
+            <Button Grid.Column="4" VerticalAlignment="Top" FontWeight="Bold" Height="96" FontSize="20"  Click="Statistics_Click">
+                <TextBlock Text="Statistics" TextWrapping="Wrap" TextAlignment="Center"/>
+            </Button>
+            <Button Grid.Column="5" VerticalAlignment="Top" FontWeight="Bold" Height="96" FontSize="20"  Click="Vouchers_Click">
+                <TextBlock Text="Vouchers" TextWrapping="Wrap" TextAlignment="Center"/>
+            </Button>
+            <Button Grid.Column="6" VerticalAlignment="Top" FontWeight="Bold" Height="96" FontSize="20"  Click="Notifications_Click">
+                <TextBlock Text="Notifications" TextWrapping="Wrap" TextAlignment="Center"/>
+            </Button>
+            <Button Grid.Column="7" VerticalAlignment="Top" FontWeight="Bold" Height="96" FontSize="20" Click="SignOut_Click">
+                <TextBlock Text="Sign Out" TextWrapping="Wrap" TextAlignment="Center"/>
+            </Button>
+        </Grid>
+        <Frame Grid.Row="1" x:Name="Guest2MainPreview"></Frame>
+    </Grid>
+</Window>

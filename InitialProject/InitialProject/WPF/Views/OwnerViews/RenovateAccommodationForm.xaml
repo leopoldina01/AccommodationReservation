@@ -1,0 +1,124 @@
+﻿<Window x:Class="InitialProject.WPF.Views.OwnerViews.RenovateAccommodationForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InitialProject.WPF.Views.OwnerViews"
+        mc:Ignorable="d"
+        Title="Renovate accommodation" Height="800" Width="500" WindowStartupLocation="CenterScreen" KeyDown="Window_KeyDown">
+
+    <Window.InputBindings>
+        <KeyBinding Command="{Binding ScheduleRenovationCommand}" Gesture="CTRL+S" />
+    </Window.InputBindings>
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../Styles/OwnerDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid Style="{StaticResource GridWindowBackground}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80" />
+            <RowDefinition Height="10*" />
+            <RowDefinition Height="60" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Background="{StaticResource Background}">
+            <StackPanel Grid.Row="0" Orientation="Horizontal">
+                <TextBlock TextWrapping="Wrap" Text="Accommodation:" TextAlignment="Left" Margin="5,0,0,0" Style="{StaticResource BoldTextBloxk}"/>
+                <TextBlock TextWrapping="Wrap" Text="{Binding SelectedAccommodation.Name}" TextAlignment="Left" Margin="30,0,0,0" Style="{StaticResource BasicTextBlock}"/>
+            </StackPanel>
+            <StackPanel Grid.Row="0" Orientation="Horizontal">
+                <TextBlock TextWrapping="Wrap" Text="Country:" TextAlignment="Left" Margin="5,0,0,0" Style="{StaticResource BoldTextBloxk}"/>
+                <TextBlock TextWrapping="Wrap" Text="{Binding SelectedAccommodation.Location.Country}" TextAlignment="Left" Margin="80,0,0,0" Style="{StaticResource BasicTextBlock}"/>
+            </StackPanel>
+            <StackPanel Grid.Row="0" Orientation="Horizontal">
+                <TextBlock TextWrapping="Wrap" Text="City:" TextAlignment="Left" Margin="5,0,0,0" Style="{StaticResource BoldTextBloxk}"/>
+                <TextBlock TextWrapping="Wrap" Text="{Binding SelectedAccommodation.Location.City}" TextAlignment="Left" Margin="106,0,0,0" Style="{StaticResource BasicTextBlock}"/>
+            </StackPanel>
+            <StackPanel Grid.Row="0" Orientation="Horizontal">
+                <TextBlock TextWrapping="Wrap" Text="Type:" TextAlignment="Left" Margin="5,0,0,0" Style="{StaticResource BoldTextBloxk}"/>
+                <TextBlock TextWrapping="Wrap" Text="{Binding SelectedAccommodation.Type}" TextAlignment="Left" Margin="101,0,0,0" Style="{StaticResource BasicTextBlock}"/>
+            </StackPanel>
+        </StackPanel>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10*" />
+                <ColumnDefinition Width="10*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25*" />
+                <RowDefinition Height="8*" />
+                <RowDefinition Height="20*" />
+                <RowDefinition Height="14*" />
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Grid.Column="0" Margin="20,10,20,0">
+                <StackPanel HorizontalAlignment="Left">
+                    <Label Name="Label_From" Content="From:" Style="{StaticResource BasicLabel}"/>
+                    <Calendar Name="Calendar_FromDate" HorizontalAlignment="Right"  SelectedDate="{Binding Path=SelectedStartDate}">
+                    </Calendar>
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Row="0" Grid.Column="1" Margin="20,10,20,0">
+                <StackPanel HorizontalAlignment="Left">
+                    <Label Name="Label_To" Content="To:" Style="{StaticResource BasicLabel}"/>
+                    <Calendar Name="Calendar_ToDate" SelectedDate="{Binding Path=SelectedEndDate}"/>
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Row="1" Grid.Column="0" Margin="20,10,20,0">
+                <StackPanel HorizontalAlignment="Left">
+                    <Label Name="Label_DurationOfRenovation" Content="Duration of renovation:" Style="{StaticResource BasicLabel}"/>
+                    <TextBox x:Name="TextBox_DurationOfRenovation" Text="{Binding Path=LenghtOfRenovation}" Style="{StaticResource ValidationTemplateTextBox}" BorderBrush="Gray" Width="179"/>
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Row="1" Grid.Column="1" Margin="20,10,20,0">
+                <Button Name="Button_CheckAvailableDates" VerticalAlignment="Top" HorizontalAlignment="Left" Content="Check available dates" Style="{StaticResource CloseButton}" Width="179" Height="44" Command="{Binding SearchDatesCommand}"/>
+            </Grid>
+
+            <Grid Grid.Row="2" Grid.ColumnSpan="2" Margin="20,10,20,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20*" />
+                    <RowDefinition Height="70*" />
+                </Grid.RowDefinitions>
+                
+                <Label Grid.Row="0" Name="Label_AvailableDates" Content="Available dates:" Style="{StaticResource BasicLabel}"/>
+                <DataGrid Name="DataGridAccommodations" DataGrid.ColumnHeaderStyle="{StaticResource DataGridHeaderStyle}" DataGrid.RowStyle="{StaticResource DataGridRowStyle}" DataGrid.CellStyle="{StaticResource DataGridCellStyle}" HorizontalAlignment="Center" RowHeaderWidth="0" ItemsSource="{Binding AvailableDates, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False"  SelectionMode="Single" SelectedItem="{Binding Path=SelectedAvailableDate, UpdateSourceTrigger=PropertyChanged}" VerticalScrollBarVisibility="Visible" Margin="10,10,0,25" Grid.Row="1" IsReadOnly="True" >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding StartDate, Mode=OneWay, StringFormat={}{0:dd.MM.yyyy}}" Header="From" Width="*"/>
+                        <DataGridTextColumn Binding="{Binding EndDate, Mode=OneWay, StringFormat={}{0:dd.MM.yyyy}}" Header="To" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+
+            <Grid Grid.Row="3" Grid.ColumnSpan="2" Margin="20,10,20,0">
+                <StackPanel>
+                    <Label Name="Label_DescriptionOfRenovation" Content="Description of renovation:" Style="{StaticResource BasicLabel}"/>
+                    <TextBox x:Name="TextBox_DescriptionOfRenovation" Style="{StaticResource MultilineTextBox}" Text="{Binding Path=Description}" BorderBrush="Gray" Height="70" Width="430"/>
+                </StackPanel>
+            </Grid>
+            
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+            </Grid.ColumnDefinitions>
+            
+            
+            <Button Name="Button_Close" Grid.Column="2" Style="{StaticResource CloseButton}" HorizontalAlignment="Center" Content="Close" Click="Button_Close_Click"/>
+            <Button Name="Button_Schedule_Renovation" Style="{StaticResource CloseButton}" Grid.Column="3" HorizontalAlignment="Center" Content="Schedule" Command="{Binding ScheduleRenovationCommand}" />
+        </Grid>
+    </Grid>
+</Window>

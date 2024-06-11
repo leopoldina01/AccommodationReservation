@@ -1,0 +1,30 @@
+﻿<Page x:Class="InitialProject.WPF.Views.Guest2Views.RequestedTourNotificationView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InitialProject.WPF.Views.Guest2Views"
+        mc:Ignorable="d"
+        Title="RequestedTourNotificationView" Height="648" Width="1024">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5.9*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        
+        <Grid Grid.Row="0" Background="Azure">
+            <Button Background="LightBlue" Width="215" Height="45" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Tour Notifications" Margin="297,0,0,0" FontWeight="Bold" FontSize="16" Command="{Binding ShowTourNotificationsCommand}"/>
+            <Button Background="LightBlue" Width="215" Height="45" HorizontalAlignment="Right" VerticalAlignment="Top" Content="Requested Tour Notifications" Margin="0,0,297,0" FontWeight="Bold" FontSize="16" />
+            <DataGrid x:Name="DataGridTours" ItemsSource="{Binding RequestedTourNotifications, UpdateSourceTrigger=PropertyChanged}" SelectionMode="Single" AutoGenerateColumns="False" SelectedItem="{Binding SelectedNotification, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" Margin="50,70,50,50">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Name" Width="*" Binding="{Binding Name}"/>
+                    <DataGridTextColumn Header="Status" Width="*" Binding="{Binding Status}" />
+                    <DataGridTextColumn Header="Content" Width="3*" Binding="{Binding TextContent}" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+        <Grid Grid.Row="1" Background="Azure">
+            <Button Command="{Binding ViewNotificationCommand}" Content="View Tour" Margin="0,22.5,0,0" FontWeight="Bold" FontSize="16" HorizontalAlignment="Center" Width="120" Height="25" VerticalAlignment="Top"/>
+        </Grid>
+    </Grid>
+</Page>

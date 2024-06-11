@@ -1,0 +1,183 @@
+﻿<Page x:Class="InitialProject.WPF.Views.OwnerViews.RatedGuestsOverview"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InitialProject.WPF.Views.OwnerViews"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        mc:Ignorable="d"
+        d:DesignHeight="550" d:DesignWidth="700" Title="MyReviewspage">
+
+    <Page.InputBindings>
+        <KeyBinding Command="{Binding SeeReviewCommand}" Gesture="CTRL+S" />
+    </Page.InputBindings>
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../Styles/OwnerDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="7*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="46*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10*"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="10*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Vertical">
+                <Label Name="GuestName" Content="Guest name:" HorizontalAlignment="Left" Style="{StaticResource BasicLabel}"></Label>
+                <TextBox Name="GuestNameSearch" TextWrapping="Wrap" Text="{Binding Path=GuestName, UpdateSourceTrigger=PropertyChanged}" Height="25" Width="100" HorizontalAlignment="Left">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="TextChanged">
+                            <i:InvokeCommandAction Command="{Binding FilterReservationsCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBox>
+            </StackPanel>
+
+            <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Vertical">
+                <Label Name="AccommodationName" Content="Accommodation name: " HorizontalAlignment="Left" Style="{StaticResource BasicLabel}"></Label>
+                <TextBox Name="AccommodationNameSearch" TextWrapping="Wrap" Text="{Binding Path=AccommodationName, UpdateSourceTrigger=PropertyChanged}" Height="25" Width="100" HorizontalAlignment="Left">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="TextChanged">
+                            <i:InvokeCommandAction Command="{Binding FilterReservationsCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBox>
+            </StackPanel>
+
+            <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Vertical" Margin="15,0,0,0">
+                <Label Name="CountryLabel" Content="Country: " HorizontalAlignment="Left" Style="{StaticResource BasicLabel}"></Label>
+                <ComboBox  Name="ComboBoxCountry" IsEditable="True" SelectedItem="{Binding Path=Country, UpdateSourceTrigger=PropertyChanged}" Width="100" Height="25" ItemsSource="{Binding Path=Countries}" HorizontalAlignment="Left">
+                    <ComboBox.Style>
+                        <Style TargetType="ComboBox">
+                            <Setter Property="ItemContainerStyle" Value="{StaticResource ComboBoxStyle}" />
+                        </Style>
+                    </ComboBox.Style>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="SelectionChanged">
+                            <i:InvokeCommandAction Command="{Binding LoadCitiesCommand}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="TextInput">
+                            <i:InvokeCommandAction Command="{Binding LoadCitiesCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </ComboBox>
+            </StackPanel>
+
+            <StackPanel Grid.Row="0" Grid.Column="3" Orientation="Vertical" Margin="15,0,0,0">
+                <Label Name="CityLabel" Content="City: " HorizontalAlignment="Left" Style="{StaticResource BasicLabel}"></Label>
+                <ComboBox  Name="ComboBoxCity" IsEditable="True" SelectedItem="{Binding Path=City, UpdateSourceTrigger=PropertyChanged}" Width="100" Height="25" ItemsSource="{Binding Path=Cities}" HorizontalAlignment="Left">
+                    <ComboBox.Style>
+                        <Style TargetType="ComboBox">
+                            <Setter Property="ItemContainerStyle" Value="{StaticResource ComboBoxStyle}" />
+                        </Style>
+                    </ComboBox.Style>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="SelectionChanged">
+                            <i:InvokeCommandAction Command="{Binding FilterReservationsCommand}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="TextInput">
+                            <i:InvokeCommandAction Command="{Binding FilterReservationsCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </ComboBox>
+            </StackPanel>
+
+            <StackPanel Grid.Row="0" Grid.Column="4" Orientation="Vertical" Margin="15,0,0,0">
+                <Label Name="TypeLabel" Content="Type: " HorizontalAlignment="Left" Style="{StaticResource BasicLabel}"></Label>
+                <ComboBox  Name="ComboBoxType" IsEditable="True" SelectedItem="{Binding Path=Type, UpdateSourceTrigger=PropertyChanged}" Width="100" Height="25" ItemsSource="{Binding Path=Types}" HorizontalAlignment="Left">
+                    <ComboBox.Style>
+                        <Style TargetType="ComboBox">
+                            <Setter Property="ItemContainerStyle" Value="{StaticResource ComboBoxStyle}" />
+                        </Style>
+                    </ComboBox.Style>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="SelectionChanged">
+                            <i:InvokeCommandAction Command="{Binding FilterReservationsCommand}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="TextInput">
+                            <i:InvokeCommandAction Command="{Binding FilterReservationsCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </ComboBox>
+            </StackPanel>
+        </Grid>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <TextBlock TextWrapping="Wrap" Text="Your total rate:" TextAlignment="Left" Margin="10,0,0,0" Style="{StaticResource BoldTextBloxk}"  FontWeight="Bold"/>
+            <TextBlock TextWrapping="Wrap" Text="{Binding TotalRating}" TextAlignment="Left" Margin="10,0,0,0" Style="{StaticResource BasicTextBlock}"/>
+        </StackPanel>
+
+        <GroupBox Grid.Row="2" Header="My reviews" Style="{StaticResource GroupBox}">
+            <ListBox Grid.Row="2" Margin="5" ItemContainerStyle="{StaticResource ListBoxItem}" ItemsSource="{Binding Path=RatedReservations, UpdateSourceTrigger=PropertyChanged}" SelectionMode="Single" SelectedItem="{Binding SelectedAccommodationReservation, UpdateSourceTrigger=PropertyChanged}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Height="110">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="250"/>
+                                <ColumnDefinition Width="250"/>
+                                <ColumnDefinition Width="800"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0">
+                                <StackPanel Grid.Row="0" Orientation="Horizontal">
+                                    <TextBlock TextWrapping="Wrap" Text="Guest name:" TextAlignment="Left" Margin="5,0,0,0" Style="{StaticResource BoldTextBloxk}"/>
+                                    <TextBlock TextWrapping="Wrap" Text="{Binding Guest.Username}" TextAlignment="Left" Margin="5,0,0,0" Style="{StaticResource BasicTextBlock}"/>
+                                </StackPanel>
+                                <StackPanel Grid.Row="0" Orientation="Horizontal">
+                                    <TextBlock TextWrapping="Wrap" Text="Accommodation:" TextAlignment="Left" Margin="5,0,0,0" Style="{StaticResource BoldTextBloxk}"/>
+                                    <TextBlock TextWrapping="Wrap" Text="{Binding Accommodation.Name}" TextAlignment="Left" Margin="5,0,0,0" Style="{StaticResource BasicTextBlock}"/>
+                                </StackPanel>
+                                <StackPanel Grid.Row="0" Orientation="Horizontal">
+                                    <TextBlock TextWrapping="Wrap" Text="Country:" TextAlignment="Left" Margin="5,0,0,0" Style="{StaticResource BoldTextBloxk}"/>
+                                    <TextBlock TextWrapping="Wrap" Text="{Binding Accommodation.Location.Country}" TextAlignment="Left" Margin="5,0,0,0" Style="{StaticResource BasicTextBlock}"/>
+                                </StackPanel>
+                                <StackPanel Grid.Row="0" Orientation="Horizontal">
+                                    <TextBlock TextWrapping="Wrap" Text="City:" TextAlignment="Left" Margin="5,0,0,0" Style="{StaticResource BoldTextBloxk}"/>
+                                    <TextBlock TextWrapping="Wrap" Text="{Binding Accommodation.Location.City}" TextAlignment="Left" Margin="5,0,0,0" Style="{StaticResource BasicTextBlock}"/>
+                                </StackPanel>
+                                <StackPanel Grid.Row="0" Orientation="Horizontal">
+                                    <TextBlock TextWrapping="Wrap" Text="Type:" TextAlignment="Left" Margin="5,0,0,0" Style="{StaticResource BoldTextBloxk}"/>
+                                    <TextBlock TextWrapping="Wrap" Text="{Binding Accommodation.Type}" TextAlignment="Left" Margin="5,0,0,0" Style="{StaticResource BasicTextBlock}"/>
+                                </StackPanel>
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="1">
+                                <StackPanel Grid.Row="0" Orientation="Horizontal">
+                                    <TextBlock TextWrapping="Wrap" Text="Start date:" TextAlignment="Left" Margin="5,0,0,0" Style="{StaticResource BoldTextBloxk}"/>
+                                    <TextBlock TextWrapping="Wrap" Text="{Binding StartDate, StringFormat={}{0:dd.MM.yyyy}}" TextAlignment="Left" Margin="5,0,0,0" Style="{StaticResource BasicTextBlock}"/>
+                                </StackPanel>
+                                <StackPanel Grid.Row="0" Orientation="Horizontal">
+                                    <TextBlock TextWrapping="Wrap" Text="End date:" TextAlignment="Left" Margin="5,0,0,0" Style="{StaticResource BoldTextBloxk}"/>
+                                    <TextBlock TextWrapping="Wrap" Text="{Binding EndDate, StringFormat={}{0:dd.MM.yyyy}}" TextAlignment="Left" Margin="5,0,0,0" Style="{StaticResource BasicTextBlock}"/>
+                                </StackPanel>
+                                <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
+                                    <Button Grid.Column="1" Margin="120,15,-110,0" Content="See review" Style="{StaticResource ListBoxButton}" Command="{Binding DataContext.SeeReviewCommand, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}" HorizontalAlignment="Right"/>
+                                </StackPanel>
+                            </StackPanel>
+
+                            <Separator Grid.ColumnSpan="3" VerticalAlignment="Bottom" Background="Black" HorizontalAlignment="Stretch"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </GroupBox>
+        
+    </Grid>
+</Page>

@@ -1,0 +1,240 @@
+﻿<Window x:Class="InitialProject.WPF.Views.GuideMenuView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InitialProject.WPF.Views"
+        xmlns:viewModel="clr-namespace:InitialProject.WPF.ViewModels"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        mc:Ignorable="d"
+        Title="Menu" Height="720" Width="1080" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="None" AllowsTransparency="True" Background="Transparent" KeyDown="Window_KeyDown">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../Styles/GuideDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Window.InputBindings>
+        <KeyBinding Key="F1" Command="{Binding CreateNewTourCommand}"/>
+        <KeyBinding Key="F2" Command="{Binding CreateMostWantedTourCommand}"/>
+        <KeyBinding Key="F3" Command="{Binding YourToursCommand}"/>
+        <KeyBinding Key="F4" Command="{Binding TodaysToursCommand}"/>
+        <KeyBinding Key="F5" Command="{Binding TourRequestsCommand}"/>
+        <KeyBinding Key="F6" Command="{Binding ComplexTourRequestsCommand}"/>
+        <KeyBinding Key="F7" Command="{Binding YourTourStatisticsCommand}"/>
+        <KeyBinding Key="F8" Command="{Binding TourRequestStatisticsCommand}"/>
+        <KeyBinding Key="F9" Command="{Binding ReviewsCommand}"/>
+        <KeyBinding Key="F10" Command="{Binding SettingsCommand}"/>
+        <KeyBinding Modifiers="Ctrl" Key="Z" Command="{Binding UndoCommand}"/>
+        <KeyBinding Modifiers="Ctrl+Shift" Key="S" Command="{Binding SwitchMenuSideCommand}"/>
+        <KeyBinding Modifiers="Ctrl+Shift" Key="T" Command="{Binding TutorialCommand}"/>
+    </Window.InputBindings>
+
+    <Border Background="{DynamicResource BackgroundColor}">
+        <DockPanel>
+            <!--<Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>-->
+
+            <Border Style="{StaticResource MenuBorder}" DockPanel.Dock="{Binding MenuSide}" Width="215">
+                <DockPanel>
+                    <Button DockPanel.Dock="Top" Style="{StaticResource MenuButton}" Margin="0,5,0,20" Command="{Binding ProfileCommand}">
+                        <DockPanel LastChildFill="False">
+                            <iconPacks:PackIconMaterial DockPanel.Dock="Left" Kind="AccountOutline" Style="{StaticResource MenuButtonIcon}"/>
+                            <TextBlock DockPanel.Dock="Left" Text="{Binding Guide.Username}" Style="{StaticResource MenuButtonText}"/>
+                        </DockPanel>
+                    </Button>
+
+                    <!--Navigation menu items-->
+                    <!--Section 1-->
+                    <Button DockPanel.Dock="Top" Style="{StaticResource MenuButton}" Command="{Binding CreateNewTourCommand}">
+                        <DockPanel LastChildFill="False">
+                            <iconPacks:PackIconMaterial DockPanel.Dock="Left" Kind="Plus" Style="{StaticResource MenuButtonIcon}"/>
+                            <TextBlock DockPanel.Dock="Left" Text="Create new tour" Style="{StaticResource MenuButtonText}"/>
+                            <TextBlock DockPanel.Dock="Right" Text="F1" Style="{StaticResource MenuButtonText}" Opacity="0.5" Margin="5,0,5,0"/>
+                        </DockPanel>
+                    </Button>
+
+                    <Button DockPanel.Dock="Top" Style="{StaticResource MenuButton}" Command="{Binding CreateMostWantedTourCommand}">
+                        <DockPanel LastChildFill="False">
+                            <iconPacks:PackIconMaterial DockPanel.Dock="Left" Kind="Fire" Style="{StaticResource MenuButtonIcon}"/>
+                            <TextBlock DockPanel.Dock="Left" Text="Create most wanted tour" Style="{StaticResource MenuButtonText}"/>
+                            <TextBlock DockPanel.Dock="Right" Text="F2" Style="{StaticResource MenuButtonText}" Opacity="0.5" Margin="5,0,5,0"/>
+                        </DockPanel>
+                    </Button>
+
+                    <Separator DockPanel.Dock="Top" Foreground="White" Margin="10" Opacity="0.5"/>
+
+                    <!--Section 2-->
+                    <Button DockPanel.Dock="Top" Style="{StaticResource MenuButton}" Command="{Binding YourToursCommand}">
+                        <DockPanel LastChildFill="False">
+                            <iconPacks:PackIconMaterial DockPanel.Dock="Left" Kind="FormatListBulleted" Style="{StaticResource MenuButtonIcon}"/>
+                            <TextBlock DockPanel.Dock="Left" Text="Your tours" Style="{StaticResource MenuButtonText}"/>
+                            <TextBlock DockPanel.Dock="Right" Text="F3" Style="{StaticResource MenuButtonText}" Opacity="0.5" Margin="5,0,5,0"/>
+                        </DockPanel>
+                    </Button>
+
+                    <Button DockPanel.Dock="Top" Style="{StaticResource MenuButton}" Command="{Binding TodaysToursCommand}">
+                        <DockPanel LastChildFill="False">
+                            <iconPacks:PackIconMaterial DockPanel.Dock="Left" Kind="CalendarToday" Style="{StaticResource MenuButtonIcon}"/>
+                            <TextBlock DockPanel.Dock="Left" Text="Todays tours" Style="{StaticResource MenuButtonText}"/>
+                            <TextBlock DockPanel.Dock="Right" Text="F4" Style="{StaticResource MenuButtonText}" Opacity="0.5" Margin="5,0,5,0"/>
+                        </DockPanel>
+                    </Button>
+
+                    <Separator DockPanel.Dock="Top" Foreground="White" Margin="10" Opacity="0.5"/>
+
+                    <!--Section 3-->
+                    <Button DockPanel.Dock="Top" Style="{StaticResource MenuButton}" Command="{Binding TourRequestsCommand}">
+                        <DockPanel LastChildFill="False">
+                            <iconPacks:PackIconMaterial DockPanel.Dock="Left" Kind="MapMarkerAlertOutline" Style="{StaticResource MenuButtonIcon}"/>
+                            <TextBlock DockPanel.Dock="Left" Text="Tour requests" Style="{StaticResource MenuButtonText}"/>
+                            <TextBlock DockPanel.Dock="Right" Text="F5" Style="{StaticResource MenuButtonText}" Opacity="0.5" Margin="5,0,5,0"/>
+                        </DockPanel>
+                    </Button>
+
+                    <Button DockPanel.Dock="Top" Style="{StaticResource MenuButton}" Command="{Binding ComplexTourRequestsCommand}">
+                        <DockPanel LastChildFill="False">
+                            <iconPacks:PackIconMaterial DockPanel.Dock="Left" Kind="MapMarkerDistance" Style="{StaticResource MenuButtonIcon}"/>
+                            <TextBlock DockPanel.Dock="Left" Text="Complex tour requests" Style="{StaticResource MenuButtonText}"/>
+                            <TextBlock DockPanel.Dock="Right" Text="F6" Style="{StaticResource MenuButtonText}" Opacity="0.5" Margin="5,0,5,0"/>
+                        </DockPanel>
+                    </Button>
+
+                    <Separator DockPanel.Dock="Top" Foreground="White" Margin="10" Opacity="0.5"/>
+
+                    <!--Section 4-->
+                    <Button DockPanel.Dock="Top" Style="{StaticResource MenuButton}" Command="{Binding YourTourStatisticsCommand}">
+                        <DockPanel LastChildFill="False">
+                            <iconPacks:PackIconMaterial DockPanel.Dock="Left" Kind="ChartBellCurveCumulative" Style="{StaticResource MenuButtonIcon}"/>
+                            <TextBlock DockPanel.Dock="Left" Text="Your tour statistics" Style="{StaticResource MenuButtonText}"/>
+                            <TextBlock DockPanel.Dock="Right" Text="F7" Style="{StaticResource MenuButtonText}" Opacity="0.5" Margin="5,0,5,0"/>
+                        </DockPanel>
+                    </Button>
+
+                    <Button DockPanel.Dock="Top" Style="{StaticResource MenuButton}" Command="{Binding TourRequestStatisticsCommand}">
+                        <DockPanel LastChildFill="False">
+                            <iconPacks:PackIconMaterial DockPanel.Dock="Left" Kind="ChartLine" Style="{StaticResource MenuButtonIcon}"/>
+                            <TextBlock DockPanel.Dock="Left" Text="Tour request statistics" Style="{StaticResource MenuButtonText}"/>
+                            <TextBlock DockPanel.Dock="Right" Text="F8" Style="{StaticResource MenuButtonText}" Opacity="0.5" Margin="5,0,5,0"/>
+                        </DockPanel>
+                    </Button>
+
+                    <Separator DockPanel.Dock="Top" Foreground="White" Margin="10" Opacity="0.5"/>
+
+                    <!--Section 5-->
+                    <Button DockPanel.Dock="Top" Style="{StaticResource MenuButton}" Command="{Binding ReviewsCommand}">
+                        <DockPanel LastChildFill="False">
+                            <iconPacks:PackIconMaterial DockPanel.Dock="Left" Kind="StarOutline" Style="{StaticResource MenuButtonIcon}"/>
+                            <TextBlock DockPanel.Dock="Left" Text="Reviews" Style="{StaticResource MenuButtonText}"/>
+                            <TextBlock DockPanel.Dock="Right" Text="F9" Style="{StaticResource MenuButtonText}" Opacity="0.5" Margin="5,0,5,0"/>
+                        </DockPanel>
+                    </Button>
+
+                    <!--Settings menu items-->
+                    <Button DockPanel.Dock="Bottom" VerticalAlignment="Bottom" Style="{StaticResource MenuButton}" Click="ButtonClose_Click">
+                        <DockPanel LastChildFill="False">
+                            <iconPacks:PackIconMaterial DockPanel.Dock="Left" Kind="Close" Style="{StaticResource MenuButtonIcon}"/>
+                            <TextBlock DockPanel.Dock="Left" Text="Close" Style="{StaticResource MenuButtonText}"/>
+                            <TextBlock DockPanel.Dock="Right" Text="F12" Style="{StaticResource MenuButtonText}" Opacity="0.5" Margin="5,0,5,0"/>
+                        </DockPanel>
+                    </Button>
+
+                    <Button DockPanel.Dock="Bottom" VerticalAlignment="Bottom" Style="{StaticResource MenuButton}" Click="ButtonLogOut_Click">
+                        <DockPanel LastChildFill="False">
+                            <iconPacks:PackIconMaterial DockPanel.Dock="Left" Kind="Logout" Style="{StaticResource MenuButtonIcon}"/>
+                            <TextBlock DockPanel.Dock="Left" Text="Log out" Style="{StaticResource MenuButtonText}"/>
+                            <TextBlock DockPanel.Dock="Right" Text="F11" Style="{StaticResource MenuButtonText}" Opacity="0.5" Margin="5,0,5,0"/>
+                        </DockPanel>
+                    </Button>
+
+                    <Button DockPanel.Dock="Bottom" VerticalAlignment="Bottom" Style="{StaticResource MenuButton}" Command="{Binding SettingsCommand}">
+                        <DockPanel LastChildFill="False">
+                            <iconPacks:PackIconMaterial DockPanel.Dock="Left" Kind="CogOutline" Style="{StaticResource MenuButtonIcon}"/>
+                            <TextBlock DockPanel.Dock="Left" Text="Settings" Style="{StaticResource MenuButtonText}"/>
+                            <TextBlock DockPanel.Dock="Right" Text="F10" Style="{StaticResource MenuButtonText}" Opacity="0.5" Margin="5,0,5,0"/>
+                        </DockPanel>
+                    </Button>
+
+
+                </DockPanel>
+
+            </Border>
+
+            <Menu Style="{DynamicResource MenuStyle1}" DockPanel.Dock="Top">
+                <MenuItem Header="_Edit">
+                    <MenuItem Header="_Undo" InputGestureText="Ctrl+Z" Command="{Binding UndoCommand}">
+                        <MenuItem.Icon>
+                            <iconPacks:PackIconMaterial Kind="Undo"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="_Redo" InputGestureText="Ctrl+Shift+Z">
+                        <MenuItem.Icon>
+                            <iconPacks:PackIconMaterial Kind="Redo"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </MenuItem>
+                <MenuItem Header="_View">
+                    <MenuItem Header="_Switch menu side" Command="{Binding SwitchMenuSideCommand}" InputGestureText="Ctrl+Shift+S">
+                        <MenuItem.Icon>
+                            <iconPacks:PackIconMaterial Kind="SwapHorizontal"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </MenuItem>
+                <MenuItem Style="{DynamicResource MenuItemStyle1}" Header="_Help">
+                    <MenuItem Header="_Tutorial" InputGestureText="Ctrl+Shift+T" Command="{Binding TutorialCommand}">
+                        <MenuItem.Icon>
+                            <iconPacks:PackIconMaterial Kind="Video"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </MenuItem>
+            </Menu>
+
+            <ContentControl Grid.Row="1" Grid.Column="1" Content="{Binding CurrentViewModel}">
+                <ContentControl.Resources>
+                    <DataTemplate DataType="{x:Type viewModel:CreateNewTourViewModel}">
+                        <local:CreateNewTourView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewModel:CreateMostWantedTourViewModel}">
+                        <local:CreateMostWantedTourView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewModel:YourToursViewModel}">
+                        <local:YourToursView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewModel:TodaysToursViewModel}">
+                        <local:TodaysToursView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewModel:GuideTourRequestsViewModel}">
+                        <local:GuideTourRequestsView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewModel:YourTourStatisticsViewModel}">
+                        <local:YourTourStatisticsView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewModel:TourRequestStatisticsViewModel}">
+                        <local:TourRequestStatisticsView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewModel:TourReviewsViewModel}">
+                        <local:TourReviewsView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewModel:SuperGuideViewModel}">
+                        <local:SuperGuideView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewModel:ComplexTourRequestsViewModel}">
+                        <local:ComplexTourRequestsView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewModel:TutorialViewModel}">
+                        <local:TutorialView/>
+                    </DataTemplate>
+                </ContentControl.Resources>
+            </ContentControl>
+        </DockPanel>
+    </Border>
+</Window>

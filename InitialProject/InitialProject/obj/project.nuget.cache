@@ -1,0 +1,67 @@
+{
+  "version": 2,
+  "dgSpecHash": "5gqIhpDnFlFk5H+90rCZU+DmFLZja5bxiwt/4j9yfhfmLNWvaSycg+USFhdauzKnupefbpclV+l6sYZ1ojuGLQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Leopoldina\\Documents\\Projects\\AccommodationReservation\\InitialProject\\InitialProject\\InitialProject.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Leopoldina\\.nuget\\packages\\cete.dynamicpdf.coresuite.net\\12.4.0\\cete.dynamicpdf.coresuite.net.12.4.0.nupkg.sha512",
+    "C:\\Users\\Leopoldina\\.nuget\\packages\\extended.wpf.toolkit\\4.5.0\\extended.wpf.toolkit.4.5.0.nupkg.sha512",
+    "C:\\Users\\Leopoldina\\.nuget\\packages\\harfbuzzsharp\\2.8.2.3\\harfbuzzsharp.2.8.2.3.nupkg.sha512",
+    "C:\\Users\\Leopoldina\\.nuget\\packages\\harfbuzzsharp.nativeassets.macos\\2.8.2.3\\harfbuzzsharp.nativeassets.macos.2.8.2.3.nupkg.sha512",
+    "C:\\Users\\Leopoldina\\.nuget\\packages\\harfbuzzsharp.nativeassets.win32\\2.8.2.3\\harfbuzzsharp.nativeassets.win32.2.8.2.3.nupkg.sha512",
+    "C:\\Users\\Leopoldina\\.nuget\\packages\\livecharts\\0.9.7\\livecharts.0.9.7.nupkg.sha512",
+    "C:\\Users\\Leopoldina\\.nuget\\packages\\livecharts.wpf\\0.9.7\\livecharts.wpf.0.9.7.nupkg.sha512",
+    "C:\\Users\\Leopoldina\\.nuget\\packages\\livechartscore\\2.0.0-beta.710\\livechartscore.2.0.0-beta.710.nupkg.sha512",
+    "C:\\Users\\Leopoldina\\.nuget\\packages\\livechartscore.skiasharpview\\2.0.0-beta.710\\livechartscore.skiasharpview.2.0.0-beta.710.nupkg.sha512",
+    "C:\\Users\\Leopoldina\\.nuget\\packages\\livechartscore.skiasharpview.wpf\\2.0.0-beta.710\\livechartscore.skiasharpview.wpf.2.0.0-beta.710.nupkg.sha512",
+    "C:\\Users\\Leopoldina\\.nuget\\packages\\mahapps.metro.iconpacks.material\\4.11.0\\mahapps.metro.iconpacks.material.4.11.0.nupkg.sha512",
+    "C:\\Users\\Leopoldina\\.nuget\\packages\\microsoft.netcore.platforms\\2.0.0\\microsoft.netcore.platforms.2.0.0.nupkg.sha512",
+    "C:\\Users\\Leopoldina\\.nuget\\packages\\microsoft.win32.systemevents\\4.5.0\\microsoft.win32.systemevents.4.5.0.nupkg.sha512",
+    "C:\\Users\\Leopoldina\\.nuget\\packages\\skiasharp\\2.88.3\\skiasharp.2.88.3.nupkg.sha512",
+    "C:\\Users\\Leopoldina\\.nuget\\packages\\skiasharp.harfbuzz\\2.88.3\\skiasharp.harfbuzz.2.88.3.nupkg.sha512",
+    "C:\\Users\\Leopoldina\\.nuget\\packages\\skiasharp.nativeassets.macos\\2.88.3\\skiasharp.nativeassets.macos.2.88.3.nupkg.sha512",
+    "C:\\Users\\Leopoldina\\.nuget\\packages\\skiasharp.nativeassets.win32\\2.88.3\\skiasharp.nativeassets.win32.2.88.3.nupkg.sha512",
+    "C:\\Users\\Leopoldina\\.nuget\\packages\\skiasharp.views.desktop.common\\2.88.3\\skiasharp.views.desktop.common.2.88.3.nupkg.sha512",
+    "C:\\Users\\Leopoldina\\.nuget\\packages\\skiasharp.views.wpf\\2.88.3\\skiasharp.views.wpf.2.88.3.nupkg.sha512",
+    "C:\\Users\\Leopoldina\\.nuget\\packages\\syncfusion.compression.net.core\\21.2.9\\syncfusion.compression.net.core.21.2.9.nupkg.sha512",
+    "C:\\Users\\Leopoldina\\.nuget\\packages\\syncfusion.licensing\\21.2.9\\syncfusion.licensing.21.2.9.nupkg.sha512",
+    "C:\\Users\\Leopoldina\\.nuget\\packages\\syncfusion.pdf.net.core\\21.2.9\\syncfusion.pdf.net.core.21.2.9.nupkg.sha512",
+    "C:\\Users\\Leopoldina\\.nuget\\packages\\system.drawing.common\\4.5.1\\system.drawing.common.4.5.1.nupkg.sha512",
+    "C:\\Users\\Leopoldina\\.nuget\\packages\\system.security.cryptography.cng\\4.7.0\\system.security.cryptography.cng.4.7.0.nupkg.sha512",
+    "C:\\Users\\Leopoldina\\.nuget\\packages\\system.security.cryptography.pkcs\\4.7.0\\system.security.cryptography.pkcs.4.7.0.nupkg.sha512",
+    "C:\\Users\\Leopoldina\\.nuget\\packages\\system.text.encoding.codepages\\4.4.0\\system.text.encoding.codepages.4.4.0.nupkg.sha512",
+    "C:\\Users\\Leopoldina\\.nuget\\packages\\system.windows.interactivity.wpf\\2.0.20525\\system.windows.interactivity.wpf.2.0.20525.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'LiveCharts 0.9.7' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net6.0-windows7.0'. This package may not be fully compatible with your project.",
+      "libraryId": "LiveCharts",
+      "targetGraphs": [
+        "net6.0-windows7.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'LiveCharts.Wpf 0.9.7' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net6.0-windows7.0'. This package may not be fully compatible with your project.",
+      "libraryId": "LiveCharts.Wpf",
+      "targetGraphs": [
+        "net6.0-windows7.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'System.Windows.Interactivity.WPF 2.0.20525' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net6.0-windows7.0'. This package may not be fully compatible with your project.",
+      "libraryId": "System.Windows.Interactivity.WPF",
+      "targetGraphs": [
+        "net6.0-windows7.0"
+      ]
+    }
+  ]
+}

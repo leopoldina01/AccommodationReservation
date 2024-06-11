@@ -1,0 +1,30 @@
+﻿<Window x:Class="InitialProject.WPF.Views.OwnerForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InitialProject.WPF.Views"
+        mc:Ignorable="d"
+        Title="OwnerForm" Height="450" Width="500" Loaded="Window_Loaded"  WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="25*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30*"/>
+            <ColumnDefinition Width="30*"/>
+        </Grid.ColumnDefinitions>
+
+        <Button Name="ButtonRegistrateAccommodation" Content="Create" Grid.Row="0" Grid.Column="1" Width="100" Height="50" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,3,30,00" Click="ButtonRegistrateAccommodation_Click"/>
+        <Label Name="LabelWelcomeUser" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="Bold" FontFamily="Arial Black" FontSize="18"/>
+        <Button Name="ButtonRateGuest" Content="Rate guests" Grid.Row="1" Grid.Column="1" Width="100" Height="50" HorizontalAlignment="Right" Margin="0,0,30,5" Click="ButtonRateGuest_Click"/>
+        <Button Name="ButtonRequests" Content="Requests" Grid.Row="3" Grid.Column="1" Width="100" Height="50" HorizontalAlignment="Right" Margin="0,0,30,5"/>
+        <Button Name="ButtonProfile" Content="Profile" Grid.Row="4" Grid.Column="1" Width="100" Height="50" HorizontalAlignment="Right" Margin="0,0,30,5" Click="ButtonProfile_Click"/>
+        <Button Name="ButtonSignOut" Content="Sign out" Grid.Row="5" Grid.Column="1" Width="100" Height="50" HorizontalAlignment="Right" Margin="0,5,30,0" Click="ButtonSignOut_Click" VerticalAlignment="Top"/>
+    </Grid>
+</Window>

@@ -1,0 +1,37 @@
+﻿<Page x:Class="InitialProject.WPF.Views.Guest2Views.SelectedTourNotificationView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InitialProject.WPF.Views.Guest2Views"
+        mc:Ignorable="d"
+        Title="SelectedTourNotificationView" Height="648" Width="1024" >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="4*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1.5*"/>
+        </Grid.ColumnDefinitions>
+        
+        <Grid Background="LightYellow" Grid.Row="0" Grid.Column="0">
+            <Label Height="41" Content="Name:" HorizontalAlignment="Left" Margin="55,29,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="24" Width="90"/>
+            <TextBlock HorizontalAlignment="Left" Margin="150,35,0,0" TextWrapping="Wrap" Text="{Binding SelectedNotification.Name}" FontSize="24" VerticalAlignment="Top" FontWeight="Bold" Width="250" Height="41"/>
+        </Grid>
+        <Grid Background="LightYellow" Grid.Row="0" Grid.Column="1">
+            <Label Content="Notification Arrival time:" HorizontalAlignment="Left" Margin="5,29,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="24" Height="41" Width="300"/>
+            <TextBlock  HorizontalAlignment="Left" Margin="330,35,0,0" TextWrapping="Wrap" Text="{Binding SelectedNotification.NotificationArrivalTime}" VerticalAlignment="Top" FontWeight="Bold" FontSize="16" Width="250" Height="41"/>
+        </Grid>
+        <Grid Background="LightYellow" Grid.Row="1" Grid.ColumnSpan="2">
+            <Label Content="Notification:" HorizontalAlignment="Left" Margin="55,29,0,0"  VerticalAlignment="Top" FontWeight="Bold" FontSize="24" Width="160"/>
+            <Border Width="920" Height="274" BorderBrush="Black" BorderThickness="1" Margin="55,90,48,148">
+                <TextBlock Background="White" HorizontalAlignment="Center"  TextWrapping="Wrap" Text="{Binding SelectedNotification.TextContent}" VerticalAlignment="Center" FontWeight="Bold" FontSize="24" Width="920" Height="274"/>
+            </Border>
+            <Button Command="{Binding ConfirmNotificationCommand}"  Content="Confirm" HorizontalAlignment="Right" Margin="0,425,95,0" VerticalAlignment="Top" Height="36" Width="140" FontSize="24" FontWeight="Bold"/>
+            <Button Command="{Binding CancelNotificationCommand}" Content="Cancel" HorizontalAlignment="Left" Margin="95,425,0,0" VerticalAlignment="Top" Height="36" Width="140" FontSize="24" FontWeight="Bold"/>
+            <Button  Content="Check Tour" HorizontalAlignment="Right" Margin="0,35,95,0" VerticalAlignment="Top" Height="36" Width="140" FontSize="24" FontWeight="Bold"/>
+        </Grid>
+    </Grid>
+</Page>

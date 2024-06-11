@@ -1,0 +1,24 @@
+﻿<Page x:Class="InitialProject.WPF.Views.OwnerViews.NotificationsOverviewPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:InitialProject.WPF.Views.OwnerViews"
+      mc:Ignorable="d" 
+      d:DesignHeight="550" d:DesignWidth="700"
+      Title="NotificationsOverviewPage">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../Styles/OwnerDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+    
+    <Grid>
+        <GroupBox Header="Notifications" Style="{StaticResource GroupBox}">
+
+        </GroupBox>
+    </Grid>
+</Page>

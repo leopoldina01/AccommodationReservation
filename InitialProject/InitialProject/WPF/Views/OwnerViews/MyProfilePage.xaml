@@ -1,0 +1,66 @@
+﻿<Page x:Class="InitialProject.WPF.Views.OwnerViews.MyProfilePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:InitialProject.WPF.Views.OwnerViews"
+      xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+      mc:Ignorable="d" 
+      d:DesignHeight="550" d:DesignWidth="700"
+      Title="MyProfilePage">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../Styles/OwnerDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid>
+        <GroupBox Header="My profile" Style="{StaticResource GroupBox}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="50*"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Row="0">
+                    <StackPanel Grid.Row="0" Orientation="Horizontal">
+                        <TextBlock TextWrapping="Wrap" Text="Username:" TextAlignment="Left" Margin="5,0,0,0" Style="{StaticResource BoldTextBloxk}"/>
+                        <TextBlock TextWrapping="Wrap" Text="{Binding Owner.Username}" TextAlignment="Left" Margin="5,0,0,0" Style="{StaticResource BasicTextBlock}"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="0" Orientation="Horizontal">
+                        <TextBlock TextWrapping="Wrap" Text="Number of times you were rated:" TextAlignment="Left" Margin="5,0,0,0" Style="{StaticResource BoldTextBloxk}"/>
+                        <TextBlock TextWrapping="Wrap" Text="{Binding NumberOfRagings}" TextAlignment="Left" Margin="5,0,0,0" Style="{StaticResource BasicTextBlock}"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="0" Orientation="Horizontal">
+                        <TextBlock TextWrapping="Wrap" Text="Your total rate:" TextAlignment="Left" Margin="5,0,0,0" Style="{StaticResource BoldTextBloxk}"/>
+                        <TextBlock TextWrapping="Wrap" Text="{Binding TotalRating}" TextAlignment="Left" Margin="5,0,0,0" Style="{StaticResource BasicTextBlock}"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="0" Orientation="Horizontal">
+                        <TextBlock TextWrapping="Wrap" Text="Your role:" TextAlignment="Left" Margin="5,0,0,0" Style="{StaticResource BoldTextBloxk}"/>
+                        <TextBlock TextWrapping="Wrap" Text="{Binding Owner.Role}" TextAlignment="Left" Margin="5,0,0,0" Style="{StaticResource BasicTextBlock}"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <lvc:CartesianChart Series="{Binding SeriesCollection}" Margin="-10,0,30,0" Grid.Row="2" LegendLocation="Left">
+                    <lvc:CartesianChart.AxisX>
+                        <lvc:Axis Title="Rating" Labels="{Binding Labels}">
+                            <lvc:Axis.Separator>
+                                <lvc:Separator Step="1" />
+                            </lvc:Axis.Separator>
+                        </lvc:Axis>
+                    </lvc:CartesianChart.AxisX>
+                    <lvc:CartesianChart.AxisY>
+                        <lvc:Axis Title="" LabelFormatter="{Binding Formatter}">
+                            <lvc:Axis.Separator>
+                                <lvc:Separator Step="1" />
+                            </lvc:Axis.Separator>
+                        </lvc:Axis>
+                    </lvc:CartesianChart.AxisY>
+                </lvc:CartesianChart>
+            </Grid>
+        </GroupBox>
+    </Grid>
+</Page>

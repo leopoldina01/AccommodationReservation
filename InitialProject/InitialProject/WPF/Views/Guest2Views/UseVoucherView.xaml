@@ -1,0 +1,27 @@
+﻿<Page x:Class="InitialProject.WPF.Views.Guest2Views.UseVoucherView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InitialProject.WPF.Views.Guest2Views"
+        mc:Ignorable="d"
+        Title="UseVoucher" Height="648" Width="1024">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3.5*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Background="Azure">
+            <DataGrid x:Name="DataGridTours" ItemsSource="{Binding Vouchers, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedVoucher, UpdateSourceTrigger=PropertyChanged}" SelectionMode="Single" AutoGenerateColumns="False" IsReadOnly="True" Margin="50,50,50,10">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Name" Width="*" Binding="{Binding Name}"/>
+                    <DataGridTextColumn Header="Expiry Date" Width="*" Binding="{Binding ExpiryDate}" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+        <Grid Grid.Row="1" Background="Azure">
+            <Button Command="{Binding UseVoucherCommand}" Content="Use" HorizontalAlignment="Right" Margin="0,45,90,0" VerticalAlignment="Top" Height="41" Width="120" FontSize="16" FontWeight="Bold"/>
+            <Button Command="{Binding CancelCommand}" Content="Cancel" HorizontalAlignment="Left" Margin="90,45,0,0" VerticalAlignment="Top" Height="41" Width="120" FontSize="16" FontWeight="Bold"/>
+        </Grid>
+    </Grid>
+</Page>

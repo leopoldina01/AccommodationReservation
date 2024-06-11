@@ -1,0 +1,332 @@
+﻿<Window x:Class="InitialProject.WPF.Views.AccommodationRegistrationForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InitialProject.WPF.Views"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:val="clr-namespace:InitialProject.Validation"
+        mc:Ignorable="d"
+        Title="Accommodation Registration" Height="700" Width="700" WindowStartupLocation="CenterScreen">
+    <Window.InputBindings>
+        <KeyBinding Command="{Binding AddImageCommand}" Gesture="CTRL+I" />
+        <KeyBinding Command="{Binding RemoveImageCommand}" Gesture="CTRL+R" />
+        <KeyBinding Command="{Binding CancelCommand}" Gesture="CTRL+O" />
+        <KeyBinding Command="{Binding RegisterCommand}" Gesture="CTRL+S" />
+        <KeyBinding Command="{Binding NextImageCommand}" Gesture="Right" />
+        <KeyBinding Command="{Binding NextImageCommand}" Gesture="CTRL+N" />
+        <KeyBinding Command="{Binding PreviousImageCommand}" Gesture="Left" />
+        <KeyBinding Command="{Binding PreviousImageCommand}" Gesture="CTRL+P" />
+    </Window.InputBindings>
+    <Window.Resources>
+
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../Styles/OwnerDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid Background="{StaticResource BackgroundWindow}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="65"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10*" MinWidth="350"/>
+            <ColumnDefinition Width="10*" MinWidth="350"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Row="0" Grid.Column="0">
+            <Label Content="Name:" Width="247" HorizontalAlignment="Center" Margin="0,15,0,0" Style="{StaticResource BasicLabel}"/>
+            <TextBox TextWrapping="Wrap" Width="247" Margin="0,10,0,15" Height="23.94" HorizontalAlignment="Center">
+                <TextBox.Text>
+                    <Binding Path="AccommodationName" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <val:EmptyStringValidation ValidationStep="RawProposedValue"/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+                <Validation.ErrorTemplate>
+                    <ControlTemplate>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <AdornedElementPlaceholder Grid.Column="0" Grid.Row="0" x:Name="textBox"/>
+                            <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="#ff9900"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Validation.ErrorTemplate>
+            </TextBox>
+        </StackPanel>
+
+        <StackPanel Grid.Row="0" Grid.Column="1">
+            <Label Content="Type:" Style="{StaticResource BasicLabel}" HorizontalAlignment="Center" Width="247" Margin="0,15,0,0"/>
+            <ComboBox IsEditable="True" Name="ComboBoxAccommodationType" HorizontalAlignment="Center" Margin="0,10,0,15" Width="247" Height="24" SelectedValuePath="Content" ItemsSource="{Binding Path=Types}">
+                <ComboBox.Style>
+                    <Style TargetType="ComboBox">
+                        <Setter Property="ItemContainerStyle" Value="{StaticResource ComboBoxStyle}" />
+                    </Style>
+                </ComboBox.Style>
+                <ComboBox.Text>
+                    <Binding  Path="Type" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <val:ComboBoxSelectionValidation ValidationStep="RawProposedValue"/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </ComboBox.Text>
+                <Validation.ErrorTemplate>
+                    <ControlTemplate>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <AdornedElementPlaceholder Grid.Column="0" Grid.Row="0" x:Name="textBox"/>
+                            <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="#ff9900"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Validation.ErrorTemplate>
+            </ComboBox>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="0">
+            <Label Content="Country:" Style="{StaticResource BasicLabel}" HorizontalAlignment="Center" Width="247" Margin="0,15,0,0"/>
+            <ComboBox Name="ComboBoxCountry" IsEditable="True" Width="247" HorizontalAlignment="Center" Margin="0,10,0,15" Height="23.94" ItemsSource="{Binding Path=Countries}">
+                <ComboBox.Style>
+                    <Style TargetType="ComboBox">
+                        <Setter Property="ItemContainerStyle" Value="{StaticResource ComboBoxStyle}" />
+                    </Style>
+                </ComboBox.Style>
+                <ComboBox.SelectedItem>
+                    <Binding  Path="Country" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <val:ComboBoxSelectionValidation ValidationStep="RawProposedValue"/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </ComboBox.SelectedItem>
+                <Validation.ErrorTemplate>
+                    <ControlTemplate>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <AdornedElementPlaceholder Grid.Column="0" Grid.Row="0" x:Name="textBox"/>
+                            <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="#ff9900"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Validation.ErrorTemplate>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction Command="{Binding LoadCitiesCommand}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </ComboBox>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <Label Content="City:" Style="{StaticResource BasicLabel}" HorizontalAlignment="Center" Width="247" Margin="0,15,0,0"/>
+            <ComboBox x:Name="ComboBoxCity" IsEditable="True" HorizontalAlignment="Center" Width="247" Margin="0,10,0,15" Height="23.94" ItemsSource="{Binding Path=Cities}">
+                <ComboBox.Style>
+                    <Style TargetType="ComboBox">
+                        <Setter Property="ItemContainerStyle" Value="{StaticResource ComboBoxStyle}" />
+                    </Style>
+                </ComboBox.Style>
+                <ComboBox.SelectedItem>
+                    <Binding  Path="City" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <val:ComboBoxSelectionValidation ValidationStep="RawProposedValue"/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </ComboBox.SelectedItem>
+                <Validation.ErrorTemplate>
+                    <ControlTemplate>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <AdornedElementPlaceholder Grid.Column="0" Grid.Row="0" x:Name="textBox"/>
+                            <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="#ff9900"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Validation.ErrorTemplate>
+            </ComboBox>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Grid.Column="0">
+            <Label Content="Min days for reservation:" Style="{StaticResource BasicLabel}" HorizontalAlignment="Center" Width="247" Margin="0,15,0,0"/>
+            <TextBox TextWrapping="Wrap" Width="247" HorizontalAlignment="Center" Margin="0,10,0,15" Height="23.94">
+                <TextBox.Text>
+                    <Binding Path="MinDaysForStay" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <val:StringToIntValidationRule ValidationStep="RawProposedValue"/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+                <Validation.ErrorTemplate>
+                    <ControlTemplate>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <AdornedElementPlaceholder Grid.Column="0" Grid.Row="0" x:Name="textBox"/>
+                            <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="#ff9900"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Validation.ErrorTemplate>
+            </TextBox>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Grid.Column="1">
+            <Label Content="Min days before cancel:" Style="{StaticResource BasicLabel}" HorizontalAlignment="Center" Width="247" Margin="0,15,0,0"/>
+            <TextBox TextWrapping="Wrap" Width="247" HorizontalAlignment="Center" Margin="0,10,0,15" Height="23.94">
+                <TextBox.Text>
+                    <Binding Path="MinDaysBeforeCancel" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <val:StringToIntValidationRule ValidationStep="RawProposedValue"/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+                <Validation.ErrorTemplate>
+                    <ControlTemplate>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <AdornedElementPlaceholder Grid.Column="0" Grid.Row="0" x:Name="textBox"/>
+                            <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="#ff9900"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Validation.ErrorTemplate>
+            </TextBox>
+        </StackPanel>
+
+        <StackPanel Grid.Row="3" Grid.Column="0">
+            <Label Content="Max number of guests:" Style="{StaticResource BasicLabel}" HorizontalAlignment="Center" Width="247" Margin="0,15,0,0"/>
+            <TextBox TextWrapping="Wrap" Width="247" HorizontalAlignment="Center"  Margin="0,10,0,15" Height="23.94">
+                <TextBox.Text>
+                    <Binding Path="Capacity" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <val:StringToIntValidationRule ValidationStep="RawProposedValue"/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+                <Validation.ErrorTemplate>
+                    <ControlTemplate>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <AdornedElementPlaceholder Grid.Column="0" Grid.Row="0" x:Name="textBox"/>
+                            <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="#ff9900"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Validation.ErrorTemplate>
+            </TextBox>
+        </StackPanel>
+
+        <Separator Grid.Row="4" Grid.ColumnSpan="2" VerticalAlignment="Top" Background="Black"/>
+
+        <Grid Grid.Row="4" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10*" />
+                <ColumnDefinition Width="10*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="33*" />
+                <RowDefinition Height="5*" />
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0" Grid.Column="0">
+                <Label Content="Url:" Style="{StaticResource BasicLabel}" HorizontalAlignment="Center" Width="240" Margin="0,15,0,0"/>
+                <TextBox Name="TestTextBox" Text="{Binding Path=Url, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" TextWrapping="Wrap" Height="30" Grid.Row="1" HorizontalAlignment="Center" Margin="0,0,0,0" Width="240">
+                    <Validation.ErrorTemplate>
+                        <ControlTemplate>
+                            <StackPanel>
+                                <AdornedElementPlaceholder/>
+                                <TextBlock Text="{Binding [0].ErrorContent}" Foreground="#ff9900" />
+                            </StackPanel>
+                        </ControlTemplate>
+                    </Validation.ErrorTemplate>
+                </TextBox>
+                <Button x:Name="ButtonAddImages" Content="Add image" Width="240" HorizontalAlignment="Center" Style="{StaticResource StandardButtonStyle}" Margin="0,20,0,0" Command="{Binding AddImageCommand}"/>
+                <Button Name="ButtonRemoveImage" Content="Remove image" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" Margin="0,20,0,0" Width="240" Style="{StaticResource StandardButtonStyle}" Command="{Binding RemoveImageCommand}"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="0" Grid.Column="1">
+                <Image Name="UploadedPicture" Source="{Binding CurrentImage, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" Grid.Column="1" Height="138" Margin="0,20,0,0" Width="230"></Image>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="240">
+                    <Button Name="ButtonLeftArrow" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Left" Margin="180,10,0,0" BorderBrush="White" Style="{StaticResource ArrowButton}" Command="{Binding PreviousImageCommand}">
+                        <Image Source="../../../Resources/Images/left_arrow.png"/>
+                    </Button>
+
+                    <Button Name="ButtonRightArrow" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Right" Margin="10,10,0,0" BorderBrush="White" Style="{StaticResource ArrowButton}" Command="{Binding NextImageCommand}">
+                        <Image Source="../../../Resources/Images/right_arrow.png"></Image>
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+
+            <TextBlock Name="TextBlockPictureSaved" Style="{StaticResource BasicTextBlock}" Grid.ColumnSpan="2" Text="{Binding Path=PictureSaved, UpdateSourceTrigger=PropertyChanged}" Margin="10,5,10,0" Grid.Row="1"/>
+        </Grid>
+
+        <Separator Grid.Row="5" Grid.ColumnSpan="2" VerticalAlignment="Top" Background="Black"/>
+
+        <Grid Grid.Row="5" Grid.ColumnSpan="2" Background="{StaticResource Background}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="120" />
+                <ColumnDefinition Width="120" />
+                <ColumnDefinition Width="30" />
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="2" Name="ButtonRegister" Content="Register" Grid.Row="5" Margin="0,0,0,0" Style="{StaticResource CloseButton}" HorizontalAlignment="Center" Command="{Binding RegisterCommand}" FontSize="12"/>
+            <Button Name="ButtonCancel" Content="Close" Grid.Row="5" Grid.Column="1" Style="{StaticResource CloseButton}" Margin="0,0,0,0" HorizontalAlignment="Center" Command="{Binding CancelCommand}" FontSize="12"/>
+        </Grid>
+    </Grid>
+</Window>

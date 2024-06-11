@@ -1,0 +1,44 @@
+﻿<Page x:Class="InitialProject.WPF.Views.Guest1Views.ReservationsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:InitialProject.WPF.Views.Guest1Views"
+      xmlns:lex="clr-namespace:InitialProject.Localization"
+      mc:Ignorable="d" 
+      d:DesignHeight="630" d:DesignWidth="1400"
+      Title="Reservations">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="4*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3.5*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.Row="0" Grid.Column="0" Content="{lex:Loc Reservations}" FontSize="30" Margin="70,10,0,0" Style="{DynamicResource LabelStyle}"/>
+
+        <DataGrid Grid.Row="1" Grid.Column="0" FontSize="18" ItemsSource="{Binding Path=Reservations, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedReservation, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" CanUserAddRows="False" Style="{DynamicResource DataGridStyle}" CanUserDeleteRows="False" IsReadOnly="True" Margin="70,0,0,40">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="{lex:Loc NameDG}" Width="160" Binding="{Binding Accommodation.Name}"/>
+                <DataGridTextColumn Header="{lex:Loc CountryDG}" Width="150" Binding="{Binding Accommodation.Location.Country}"/>
+                <DataGridTextColumn Header="{lex:Loc CityDG}" Width="150" Binding="{Binding Accommodation.Location.City}"/>
+                <DataGridTextColumn Header="{lex:Loc TypeDG}" Width="130" Binding="{Binding Accommodation.Type}"/>
+                <DataGridTextColumn Header="{lex:Loc MinDaysBeforeCancel}" Binding="{Binding Accommodation.MinDaysBeforeCancel}"/>
+                <DataGridTextColumn Header="{lex:Loc From}" Width="100" Binding="{Binding StartDate, StringFormat={}{0:dd.MM.yyyy}}"/>
+                <DataGridTextColumn Header="{lex:Loc To}" Width="100" Binding="{Binding EndDate, StringFormat={}{0:dd.MM.yyyy}}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <Button Content="{lex:Loc RateYourStay}" Command="{Binding RateYourStayCommand}" Style="{DynamicResource ButtonStyle}" Height="50" Width="200" Margin="0,40,0,0" FontSize="20"/>
+            <Button Content="{lex:Loc ChangeDates}" Command="{Binding ChangeReservationCommand}" Style="{DynamicResource ButtonStyle}" Height="50" Width="200" Margin="0,30,0,0" FontSize="20"/>
+            <Button Content="{lex:Loc CancelReservation}" Command="{Binding CancelReservationCommand}" Style="{DynamicResource ButtonStyle}" Height="50" Width="200" Margin="0,30,0,0" FontSize="20"/>
+            <Button Content="{lex:Loc ViewAllRequests}" Command="{Binding ViewAllChangeRequestsCommand}" Style="{DynamicResource ButtonStyle}" Height="50" Width="200" Margin="0,30,0,0" FontSize="20"/>
+            <Button Content="{lex:Loc GenerateAReport}" Command="{Binding GenerateReportCommand}" Style="{DynamicResource ButtonStyle}" Height="50" Width="200" Margin="0,30,0,0" FontSize="20"/>
+        </StackPanel>
+    </Grid>
+</Page>

@@ -1,0 +1,70 @@
+﻿<Window x:Class="InitialProject.WPF.Views.TourCheckpointsView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InitialProject.WPF.Views"
+        xmlns:cnv="clr-namespace:InitialProject.Converters"
+        mc:Ignorable="d"
+        Title="Checkpoints" Height="450" Width="550" AllowsTransparency="True" Background="Transparent" WindowStyle="None" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../Styles/GuideDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <cnv:CheckpointStatusConverter x:Key="CheckpointStatusConverter"/>
+        </ResourceDictionary>
+        
+    </Window.Resources>
+    <Border Background="{DynamicResource BackgroundColor}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="317*"/>
+                <RowDefinition Height="65*"/>
+                <RowDefinition Height="68*"/>
+            </Grid.RowDefinitions>
+
+            <DataGrid Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" Grid.Row="0" Margin="10" ItemsSource="{Binding Checkpoints}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="4*" Header="Checkpoint" Binding="{Binding Name}">
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="DataGridCell" BasedOn="{StaticResource DataGridCellStyle1}">
+                                <Setter Property="Focusable" Value="False"/>
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Width="2*" Header="Status" Binding="{Binding Active, Converter={StaticResource CheckpointStatusConverter}}">
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="DataGridCell" BasedOn="{StaticResource DataGridCellStyle1}">
+                                <Setter Property="Focusable" Value="False"/>
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+                    </DataGridTextColumn>
+                    <DataGridTemplateColumn Width="2*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Guests" Command="{Binding DataContext.GuestListCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}" Style="{DynamicResource DataGridButton}"></Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Width="2*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Complete" Command="{Binding DataContext.CompleteCheckpointCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}" Style="{DynamicResource DataGridButton}"></Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <StackPanel Grid.Row="1" Margin="10,0,0,0">
+                <Label Content="Guests arrived: " Style="{DynamicResource ReviewLabel}"/>
+                <Label Content="Guest capacity: " Style="{DynamicResource ReviewLabel}"/>
+            </StackPanel>
+
+            <Border Grid.Row="3" Grid.ColumnSpan="2" Style="{DynamicResource MenuBorder}">
+                <Button Content="Close" Style="{DynamicResource BottomMenuButton}" HorizontalAlignment="Left" Margin="10,0,0,0" Click="ButtonClose_Click"/>
+            </Border>
+        </Grid>
+    </Border>
+</Window>

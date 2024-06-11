@@ -1,0 +1,48 @@
+﻿<Page x:Class="InitialProject.WPF.Views.Guest2TourView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InitialProject.WPF.Views"
+        mc:Ignorable="d"
+        Title="Tour View" Height="648" Width="1024"  Background="LightYellow">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1.2*"/>
+            <RowDefinition Height="4.8*"/>
+            <RowDefinition Height="0.8*"/>
+        </Grid.RowDefinitions>
+        <Grid Background ="LightYellow"  Grid.Row="0">
+            <ComboBox IsEditable="true" SelectedValue="{Binding SelectedCountry, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Countries, UpdateSourceTrigger=PropertyChanged}"  x:Name="ComboBoxCountry" IsEnabled="True" Margin="105,14,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120"/>
+            <Label Content="Country:" HorizontalAlignment="Left" Margin="26,10,0,0" VerticalAlignment="Top" Width="62" FontWeight="Bold" Height="26"/>
+            <ComboBox IsEditable="True" SelectedValue="{Binding SelectedCity, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Cities, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Name="ComboBoxCity" HorizontalAlignment="Left" Margin="105,61,0,0" VerticalAlignment="Top" Width="120" IsEnabled="{Binding CityComboBoxIsEnabled, UpdateSourceTrigger=PropertyChanged}"/>
+            <Label Content="City:" HorizontalAlignment="Left" Margin="26,57,0,0" VerticalAlignment="Top" Width="62" FontWeight="Bold" Height="27"/>
+            <TextBox Text="{Binding TourDuration, TargetNullValue='', UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="465,14,0,0" VerticalAlignment="Top" Width="120" IsEnabled="True" Height="22"/>
+            <Label Content="Duration(h):" HorizontalAlignment="Left" Margin="368,12,0,0" VerticalAlignment="Top" Width="79" FontWeight="Bold"/>
+            <TextBox Text="{Binding MaxGuests, TargetNullValue='', UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="465,62,0,0" VerticalAlignment="Top" Width="120" IsEnabled="True" Height="22"/>
+            <Label Content="Guest"  HorizontalAlignment="Left" Margin="368,38,0,0" VerticalAlignment="Top" Width="79" FontWeight="Bold"/>
+            <Label Content="Number:" HorizontalAlignment="Left" Margin="368,59,0,0" VerticalAlignment="Top" Width="79" FontWeight="Bold"/>
+            <ComboBox IsEditable="True" SelectedValue="{Binding SelectedLanguage, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Languages, UpdateSourceTrigger=PropertyChanged}" x:Name="ComboBoxLanguage" HorizontalAlignment="Left" Margin="783,14,0,0" VerticalAlignment="Top" Width="120" IsEnabled="True"/>
+            <Label Content="Language:" HorizontalAlignment="Left" Margin="699,12,0,0" VerticalAlignment="Top" Width="79" FontWeight="Bold"/>
+            <Button Content="Apply" HorizontalAlignment="Left" Margin="783,64,0,0" VerticalAlignment="Top" Width="120" FontWeight="Bold" Command="{Binding ApplyFilterCommand}"/>
+        </Grid>
+        <Grid Background="LightYellow" Grid.Row="1">
+            <DataGrid x:Name="DataGridTours" ItemsSource="{Binding Tours, UpdateSourceTrigger=PropertyChanged}" SelectionMode="Single" AutoGenerateColumns="False" SelectedItem="{Binding SelectedTour, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" Margin="10,0,10,0">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Name" Width="143.3" Binding="{Binding Name}"/>
+                    <DataGridTextColumn Header="Country" Width="143.3" Binding="{Binding Location.Country}" />
+                    <DataGridTextColumn Header="City" Width="143.3" Binding="{Binding Location.City}" />
+                    <DataGridTextColumn Header="Language" Width="143.3" Binding="{Binding Language}" />
+                    <DataGridTextColumn Header="Max. Guests" Width="143.3" Binding="{Binding MaxGuests}"/>
+                    <DataGridTextColumn Header="Start Time" Width="143.3" Binding="{Binding StartTime}"/>
+                    <DataGridTextColumn Header="Duration" Width="120" Binding="{Binding Duration}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+        <Grid Background="LightYellow" Grid.Row="2">
+            <Button Content="Close"  VerticalAlignment="Center" HorizontalAlignment="Left" Width="120" Command="{Binding CloseWindowCommand}" Margin="58,0,0,0" FontWeight="Bold"/>
+            <Button Name="ChooseButton" Content="Choose"  VerticalAlignment="Center" Command="{Binding ChooseTourCommand}" Margin="828,0,58,0" FontWeight="Bold" HorizontalAlignment="Left" Width="120"/>
+            <Button Name="Demo" Height="20" Content="{Binding DemoButtonContent}"  VerticalAlignment="Center" Command="{Binding DemoCommand}" Margin="460,0,58,0" FontWeight="Bold" HorizontalAlignment="Left" Width="120"/>
+        </Grid>
+    </Grid>
+</Page>

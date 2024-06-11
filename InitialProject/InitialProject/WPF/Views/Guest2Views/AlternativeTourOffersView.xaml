@@ -1,0 +1,33 @@
+﻿<Page x:Class="InitialProject.WPF.Views.AlternativeTourOffersView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InitialProject.WPF.Views"
+        mc:Ignorable="d"
+        Title="Alternative Tours" Height="648" Width="1024" Background="LightYellow">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5.3*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        
+        <Grid Background="LightYellow" Grid.Row="0">
+            <DataGrid Grid.Row="1" x:Name="DataGridTours" ItemsSource="{Binding AlternativeTours, UpdateSourceTrigger=PropertyChanged}" SelectionMode="Single" AutoGenerateColumns="False" SelectedItem="{Binding AlternativeSelectedTour, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" Margin="10,30,10,0">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Name" Width="143.3" Binding="{Binding Name}"/>
+                    <DataGridTextColumn Header="Country" Width="143.3" Binding="{Binding Location.Country}" />
+                    <DataGridTextColumn Header="City" Width="143.3" Binding="{Binding Location.City}" />
+                    <DataGridTextColumn Header="Language" Width="143.3" Binding="{Binding Language}" />
+                    <DataGridTextColumn Header="Max. Guests" Width="143.3" Binding="{Binding MaxGuests}"/>
+                    <DataGridTextColumn Header="Start Time" Width="143.3" Binding="{Binding StartTime}"/>
+                    <DataGridTextColumn Header="Duration" Width="120" Binding="{Binding Duration}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+        <Grid Grid.Row="1" Background="LightYellow">
+            <Button Content="Cancel" HorizontalAlignment="Left" Margin="58,50,0,0" VerticalAlignment="Top" Width="120" Command="{Binding CancelCommand}" FontWeight="Bold"/>
+            <Button Name="ChooseButton" Content="Choose" HorizontalAlignment="Right" Margin="0,50,58,0" VerticalAlignment="Top" Width="120" Command="{Binding ChooseCommand}" FontWeight="Bold"/>
+        </Grid>
+    </Grid>
+</Page>

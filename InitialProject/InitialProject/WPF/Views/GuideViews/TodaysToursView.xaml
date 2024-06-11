@@ -1,0 +1,74 @@
+﻿<UserControl x:Class="InitialProject.WPF.Views.TodaysToursView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InitialProject.WPF.Views"
+        xmlns:cnv="clr-namespace:InitialProject.Converters"
+        mc:Ignorable="d"
+        Height="650" Width="850">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../Styles/GuideDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <cnv:TourStatusConverter x:Key="TourStatusConverter"/>
+            <cnv:TourStatusToActionConverter x:Key="TourStatusToActionConverter"/>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <DataGrid Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" ItemsSource="{Binding Path=TodaysTours, UpdateSourceTrigger=PropertyChanged}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="9*" Header="Tour name" Binding="{Binding Name}">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell" BasedOn="{StaticResource DataGridCellStyle1}">
+                            <Setter Property="Focusable" Value="False"/>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Width="6*" Header="Location">
+                    <DataGridTextColumn.Binding>
+                        <MultiBinding StringFormat="{}{0}, {1}">
+                            <Binding Path="Location.City"/>
+                            <Binding Path="Location.Country"/>
+                        </MultiBinding>
+                    </DataGridTextColumn.Binding>
+
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell" BasedOn="{StaticResource DataGridCellStyle1}">
+                            <Setter Property="Focusable" Value="False"/>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Width="6*" Header="Start time" Binding="{Binding StartTime, StringFormat={}{0:dd.MM.yyyy HH\\:mm}}">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell" BasedOn="{StaticResource DataGridCellStyle1}">
+                            <Setter Property="Focusable" Value="False"/>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Width="4*" Header="Status" Binding="{Binding Status, Converter={StaticResource TourStatusConverter}}">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell" BasedOn="{StaticResource DataGridCellStyle1}">
+                            <Setter Property="Focusable" Value="False"/>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="{Binding Status, Converter={StaticResource TourStatusToActionConverter}}" Command="{Binding DataContext.ActivateOrFinishTourCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}" Style="{DynamicResource DataGridButton}"></Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="5*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Checkpoints" Command="{Binding DataContext.CheckpointsCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}" Style="{DynamicResource DataGridButton}" Width="80"></Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

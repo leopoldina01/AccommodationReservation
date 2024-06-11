@@ -1,0 +1,21 @@
+﻿<Window x:Class="InitialProject.WPF.Views.Guest1Views.NotificationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InitialProject.WPF.Views.Guest1Views"
+        mc:Ignorable="d"
+        Title="Notification" Height="250" Width="350" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="10*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock TextWrapping="Wrap" Text="{Binding Notification.TextContent}" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" FontWeight="Bold" FontSize="25" Width="330" Height="136"/>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <Button Name="ButtonRateNow" Content="Close" Width="100" Height="40" Margin="120,0,30,0" Click="CloseButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

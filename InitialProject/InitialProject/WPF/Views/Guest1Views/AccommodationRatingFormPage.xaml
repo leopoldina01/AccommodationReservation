@@ -1,0 +1,98 @@
+﻿<Page x:Class="InitialProject.WPF.Views.Guest1Views.AccommodationRatingFormPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:InitialProject.WPF.Views.Guest1Views"
+      xmlns:lex="clr-namespace:InitialProject.Localization"
+      mc:Ignorable="d" 
+      d:DesignHeight="630" d:DesignWidth="1400"
+      Title="Accommodation rating form">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1.6*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="0.6*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="0.8*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="1.85*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.5*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="1.5*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Row="0" Grid.Column="1" Grid.RowSpan="7">
+            <Label Content="{lex:Loc RateYourStay}" FontSize="30" Style="{DynamicResource LabelStyle}" Margin="0,10,0,0" Padding="0"/>
+            <Label Content="{Binding SelectedReservation.Accommodation.Name}" Style="{DynamicResource LabelStyle}" FontSize="25" Padding="0"/>
+            <TextBlock FontSize="20" Padding="0" Style="{DynamicResource TextBlockStyle}">
+                <TextBlock.Text>
+                    <MultiBinding StringFormat="{}{0}, {1}">
+                        <Binding Path="SelectedReservation.Accommodation.Location.City"/>
+                        <Binding Path="SelectedReservation.Accommodation.Location.Country"/>
+                    </MultiBinding>
+                </TextBlock.Text>
+            </TextBlock>
+            <Label Content="{Binding SelectedReservation.Accommodation.Type}" Style="{DynamicResource LabelStyle}" FontSize="20" Padding="0"/>
+            <Label Content="{lex:Loc Date}" FontSize="25" Padding="0" Style="{DynamicResource LabelStyle}" Margin="0,40,0,0"/>
+            <TextBlock FontSize="20" Padding="0" Style="{DynamicResource TextBlockStyle}">
+                <TextBlock.Text>
+                    <MultiBinding StringFormat="{}{0:dd.MM.yyyy} - {1:dd.MM.yyyy}">
+                        <Binding Path="SelectedReservation.StartDate"/>
+                        <Binding Path="SelectedReservation.EndDate"/>
+                    </MultiBinding>
+                </TextBlock.Text>
+            </TextBlock>
+        </StackPanel>
+
+        <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal">
+            <Label Content="{lex:Loc Cleanliness}" FontSize="20" VerticalAlignment="Bottom" Style="{DynamicResource LabelStyle}"/>
+            <RadioButton GroupName="Cleanliness" IsChecked="{Binding Path=CleanlinessModeArray[0], Mode=TwoWay}" VerticalAlignment="Bottom" Height="20" Width="17" Margin="40,0,0,2"/>
+            <Label Content="1" FontSize="18" VerticalAlignment="Bottom" Padding="0" Margin="0,0,0,4" Style="{DynamicResource LabelStyle}"/>
+            <RadioButton GroupName="Cleanliness" IsChecked="{Binding Path=CleanlinessModeArray[1], Mode=TwoWay}" VerticalAlignment="Bottom" Height="20" Width="17" Margin="25,0,0,2"/>
+            <Label Content="2" FontSize="18" VerticalAlignment="Bottom" Padding="0" Margin="0,0,0,4" Style="{DynamicResource LabelStyle}"/>
+            <RadioButton GroupName="Cleanliness" IsChecked="{Binding Path=CleanlinessModeArray[2], Mode=TwoWay}" VerticalAlignment="Bottom" Height="20" Width="17" Margin="25,0,0,2"/>
+            <Label Content="3" FontSize="18" VerticalAlignment="Bottom" Padding="0" Margin="0,0,0,4" Style="{DynamicResource LabelStyle}"/>
+            <RadioButton GroupName="Cleanliness" IsChecked="{Binding Path=CleanlinessModeArray[3], Mode=TwoWay}" VerticalAlignment="Bottom" Height="20" Width="17" Margin="25,0,0,2"/>
+            <Label Content="4" FontSize="18" VerticalAlignment="Bottom" Padding="0" Margin="0,0,0,4" Style="{DynamicResource LabelStyle}"/>
+            <RadioButton GroupName="Cleanliness" IsChecked="{Binding Path=CleanlinessModeArray[4], Mode=TwoWay}" VerticalAlignment="Bottom" Height="20" Width="17" Margin="25,0,0,2"/>
+            <Label Content="5" FontSize="18" VerticalAlignment="Bottom" Padding="0" Margin="0,0,0,4" Style="{DynamicResource LabelStyle}"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Horizontal">
+            <Label Content="{lex:Loc Correctness}" FontSize="20" VerticalAlignment="Bottom" Style="{DynamicResource LabelStyle}"/>
+            <RadioButton GroupName="Correctness" IsChecked="{Binding Path=CorrectnessModeArray[0], Mode=TwoWay}" VerticalAlignment="Bottom" Height="20" Width="17" Margin="34,0,0,2"/>
+            <Label Content="1" FontSize="18" VerticalAlignment="Bottom" Padding="0" Margin="0,0,0,4" Style="{DynamicResource LabelStyle}"/>
+            <RadioButton GroupName="Correctness" IsChecked="{Binding Path=CorrectnessModeArray[1], Mode=TwoWay}" VerticalAlignment="Bottom" Height="20" Width="17" Margin="25,0,0,2"/>
+            <Label Content="2" FontSize="18" VerticalAlignment="Bottom" Padding="0" Margin="0,0,0,4" Style="{DynamicResource LabelStyle}"/>
+            <RadioButton GroupName="Correctness" IsChecked="{Binding Path=CorrectnessModeArray[2], Mode=TwoWay}" VerticalAlignment="Bottom" Height="20" Width="17" Margin="25,0,0,2"/>
+            <Label Content="3" FontSize="18" VerticalAlignment="Bottom" Padding="0" Margin="0,0,0,4" Style="{DynamicResource LabelStyle}"/>
+            <RadioButton GroupName="Correctness" IsChecked="{Binding Path=CorrectnessModeArray[3], Mode=TwoWay}" VerticalAlignment="Bottom" Height="20" Width="17" Margin="25,0,0,2"/>
+            <Label Content="4" FontSize="18" VerticalAlignment="Bottom" Padding="0" Margin="0,0,0,4" Style="{DynamicResource LabelStyle}"/>
+            <RadioButton GroupName="Correctness" IsChecked="{Binding Path=CorrectnessModeArray[4], Mode=TwoWay}" VerticalAlignment="Bottom" Height="20" Width="17" Margin="25,0,0,2"/>
+            <Label Content="5" FontSize="18" VerticalAlignment="Bottom" Padding="0" Margin="0,0,0,4" Style="{DynamicResource LabelStyle}"/>
+        </StackPanel>
+
+        <Label Grid.Row="2" Grid.Column="2" Content="{lex:Loc YourComment}" Margin="10,0,0,0" Padding="0" VerticalAlignment="Bottom" Style="{DynamicResource LabelStyle}"/>
+
+        <TextBox Grid.Row="3" Grid.Column="2" Text="{Binding Path=Comment, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,5,5" FontSize="14" Style="{DynamicResource TextBoxStyle}"></TextBox>
+
+        <StackPanel Grid.Row="4" Grid.Column="2" Orientation="Horizontal">
+            <Label Content="{lex:Loc Images}" FontSize="20" Style="{DynamicResource LabelStyle}"/>
+            <TextBox Text="{Binding Path=ImageUrl,UpdateSourceTrigger=PropertyChanged}" Style="{DynamicResource TextBoxStyle}" FontSize="15" Height="35" Width="200" VerticalContentAlignment="Center" Margin="20,0,0,0"/>
+            <Button Content="+" Command="{Binding AddImageCommand}" Height="35" Style="{DynamicResource ButtonStyle}" Width="35" FontSize="20" VerticalContentAlignment="Center" Margin="10,0,0,0"/>
+            <Button Content="-" Command="{Binding RemoveImageCommand}" Height="35" Style="{DynamicResource ButtonStyle}" Width="35" FontSize="20" VerticalContentAlignment="Center" Margin="10,0,0,0"/>
+        </StackPanel>
+
+        <Image Grid.Row="5" Grid.Column="2" Source="{Binding CurrentImageUrl, UpdateSourceTrigger=PropertyChanged}" Margin="20,5,20,20"/>
+
+        <StackPanel Grid.Row="6" Grid.Column="2" Orientation="Horizontal">
+            <Button Content="{lex:Loc SuggestRenovation}" Command="{Binding SuggestRenovationCommand}" FontSize="15" Height="35" Style="{DynamicResource ButtonStyle}" Width="150" Margin="20,0,0,30"/>
+            <Button Content="{lex:Loc SubmitYourReview}" Command="{Binding RateCommand}" FontSize="15" Style="{DynamicResource ButtonStyle}" Height="35" Width="150" Margin="60,0,0,30"/>
+        </StackPanel>
+    </Grid>
+</Page>

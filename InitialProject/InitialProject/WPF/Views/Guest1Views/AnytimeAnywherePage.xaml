@@ -1,0 +1,82 @@
+﻿<Page x:Class="InitialProject.WPF.Views.Guest1Views.AnytimeAnywherePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:InitialProject.WPF.Views.Guest1Views"
+      xmlns:lex="clr-namespace:InitialProject.Localization"
+      mc:Ignorable="d" 
+      d:DesignHeight="630" d:DesignWidth="1400"
+      Title="Anytime/Anywhere">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="0.8*"/>
+            <RowDefinition Height="6.3*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.5*"/>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="1.5*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Row="0" Grid.Column="1">
+            <Label Content="{lex:Loc AnytimeAnywhere}" FontSize="30" Margin="0,10,0,0" Padding="0" Style="{DynamicResource LabelStyle}"/>
+        </StackPanel>
+
+        <Grid Grid.Row="0" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" HorizontalAlignment="Right" Margin="0,0,15,0">
+                <Label Content="{lex:Loc From}" HorizontalAlignment="Center" Margin="0,45,0,0" Padding="0" Style="{DynamicResource LabelStyle}"/>
+                <Calendar SelectedDate="{Binding Path=SelectedStartDate}"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" HorizontalAlignment="Left" Margin="15,0,0,0">
+                <Label Content="{lex:Loc To}" HorizontalAlignment="Center" Margin="0,45,0,0" Padding="0" Style="{DynamicResource LabelStyle}"/>
+                <Calendar SelectedDate="{Binding Path=SelectedEndDate}"/>
+            </StackPanel>
+        </Grid>
+
+        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+            <Label Content="{lex:Loc Duration}" FontSize="15" VerticalAlignment="Center" Margin="120,0,0,0" Style="{DynamicResource LabelStyle}"/>
+            <TextBox Text="{Binding Path=DurationOfStay}" FontSize="15" VerticalContentAlignment="Center" Style="{DynamicResource TextBoxStyle}" Width="40" Height="30" Margin="10,0,0,0" VerticalAlignment="Center"/>
+            <Label Content="{lex:Loc GuestNumber}" FontSize="15" VerticalAlignment="Center" Margin="20,0,0,0" Style="{DynamicResource LabelStyle}"/>
+            <TextBox Text="{Binding Path=GuestNumber}" FontSize="15" VerticalContentAlignment="Center" Style="{DynamicResource TextBoxStyle}" Width="40" Height="30" Margin="10,0,0,0" VerticalAlignment="Center"/>
+            <Button Content="{lex:Loc FindAvailableDates}" Command="{Binding SearchDatesCommand}" FontSize="15" Height="30" Width="140" Margin="40,0,0,0" Style="{DynamicResource ButtonStyle}"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" Margin="70,0,70,40">
+            <Label Content="{lex:Loc AvailableAccommodations}" Padding="0" HorizontalAlignment="Left" Margin="10,0,0,0" Style="{DynamicResource LabelStyle}"/>
+            <DataGrid Name="DateDataGrid" ItemsSource="{Binding Accommodations, UpdateSourceTrigger=PropertyChanged}" Style="{DynamicResource DataGridStyle}" SelectionMode="Single" AutoGenerateColumns="False" SelectedItem="{Binding SelectedAccommodation}" CanUserAddRows="False" Validation.ErrorTemplate="{x:Null}" FontSize="15" Height="238" Margin="0,0,0,0" IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Name}" Header="{lex:Loc NameDG}" Width="*"/>
+                    <DataGridTextColumn Binding="{Binding Country}" Header="{lex:Loc CountryDG}" Width="*"/>
+                    <DataGridTextColumn Binding="{Binding City}" Header="{lex:Loc CityDG}" Width="*"/>
+                    <DataGridTextColumn Binding="{Binding Type}" Header="{lex:Loc TypeDG}" Width="*"/>
+                    <DataGridTextColumn Binding="{Binding MaxGuests}" Header="{lex:Loc MaxGuests}" Width="*"/>
+                    <DataGridTextColumn Binding="{Binding MinReservationDays}" Header="{lex:Loc MinReservationDays}" Width="1.01*"/>
+                    <DataGridTextColumn Header="{lex:Loc Date}" Width="1.5*">
+                        <DataGridTextColumn.Binding>
+                            <MultiBinding StringFormat="{} {0:dd.MM.yyyy} - {1:dd.MM.yyyy}">
+                                <Binding Path="StartDate"/>
+                                <Binding Path="EndDate"/>
+                            </MultiBinding>
+                        </DataGridTextColumn.Binding>
+                    </DataGridTextColumn>
+                    <DataGridTemplateColumn Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Style="{DynamicResource ButtonStyle}" Content="{lex:Loc Reserve}" Command="{Binding DataContext.MakeReservationCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"></Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+    </Grid>
+</Page>

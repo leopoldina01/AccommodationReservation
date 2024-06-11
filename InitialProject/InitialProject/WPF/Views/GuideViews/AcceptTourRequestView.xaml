@@ -1,0 +1,35 @@
+﻿<Window x:Class="InitialProject.WPF.Views.AcceptTourRequestView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:local="clr-namespace:InitialProject.WPF.Views"
+        mc:Ignorable="d"
+        Title="AcceptTourRequestView" Height="150" Width="250" AllowsTransparency="True" Background="Transparent" WindowStyle="None" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../Styles/GuideDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Border Background="{DynamicResource BackgroundColor}" BorderThickness="1" BorderBrush="{DynamicResource HighlightColorSolid}">
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Label Content="Pick date &amp; time" Style="{DynamicResource ReviewLabel}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+            <xctk:DateTimePicker Grid.Row="1" Height="25" Width="200" Style="{DynamicResource DateTimePickerStyle}" Format="Custom" FormatString="dd.MM.yyyy HH.mm" Value="{Binding SelectedDate}" Minimum="{Binding TourRequest.StartDate}" Maximum="{Binding TourRequest.EndDate}"/>
+
+            <Button Grid.Row="2" Style="{DynamicResource BottomMenuButton}" Content="Confirm" HorizontalAlignment="Right" Margin="0,0,20,0" Command="{Binding ConfirmCommand}"/>
+            <Button Grid.Row="2" Style="{DynamicResource BottomMenuButton}" Content="Close" HorizontalAlignment="Left" Margin="20,0,0,0" Click="Button_Click"/>
+
+        </Grid>
+    </Border>
+</Window>

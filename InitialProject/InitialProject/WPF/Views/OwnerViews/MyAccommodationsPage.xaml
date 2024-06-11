@@ -1,0 +1,196 @@
+﻿<Page x:Class="InitialProject.WPF.Views.OwnerViews.MyAccommodationsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:InitialProject.WPF.Views.OwnerViews"
+      xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+      mc:Ignorable="d" 
+      d:DesignHeight="550" d:DesignWidth="700"
+      Title="MyAccommodationsPage">
+    
+    <Page.InputBindings>
+        <KeyBinding Command="{Binding CreateNewAccommodationCommand}" Gesture="CTRL+N" />
+        <KeyBinding Command="{Binding OpenAccommodationInfoCommand}" Gesture="CTRL+I" />
+        <KeyBinding Command="{Binding CreateNewAccommodationCommand}" Gesture="CTRL+M" />
+        <KeyBinding Command="{Binding RenovateAccommodationCommand}" Gesture="CTRL+R" />
+        <KeyBinding Command="{Binding AccommodationStatisticsCommand}" Gesture="CTRL+S" />
+    </Page.InputBindings>
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../Styles/OwnerDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="7*"/>
+            <RowDefinition Height="7*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="45*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="10*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Row="0" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20*"/>
+                <ColumnDefinition Width="5*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" Orientation="Horizontal">
+                <Label Grid.Column="0" Name="LabelPositiveProposal" Style="{StaticResource BasicLabel}" Content="You could create new accommodation on location" Margin="0,10,0,10"/>
+                <Label Name="MostPopularLocation" Style="{StaticResource BasicLabel}" Margin="0,10,0,10" Content="{Binding MostPopularLocation}" />
+            </StackPanel>
+
+            <Button Grid.Column="1" Name="ButtonCreate" Content="Create" Style="{StaticResource StandardButtonStyle}" Margin="0,0,25,0" Command="{Binding CreateNewAccommodationCommand}"/>
+        </Grid>
+
+        <Separator Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Top" Background="Black"/>
+
+        <Grid Grid.Row="1" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20*"/>
+                <ColumnDefinition Width="5*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" Orientation="Horizontal">
+                <Label Grid.Column="0" Name="LabeNegativeProposal" Style="{StaticResource BasicLabel}" Content="You could delete accommodation on location:" Margin="0,10,0,10"/>
+                <Label Name="LeastPopularLocation" Style="{StaticResource BasicLabel}" Margin="0,10,0,10" Content="{Binding LeastPopularLocation}" />
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="2" Grid.ColumnSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10*"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="10*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Vertical" Margin="20,0,0,0">
+                <Label Name="AccommodationName" Content="Accommodation name: " HorizontalAlignment="Left" Style="{StaticResource BasicLabel}"></Label>
+                <TextBox Name="AccommodationNameSearch" TextWrapping="Wrap" Text="{Binding Path=AccommodationName, UpdateSourceTrigger=PropertyChanged}" Height="25" Width="100" HorizontalAlignment="Left">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="TextChanged">
+                            <i:InvokeCommandAction Command="{Binding FilterAccommodationsCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBox>
+            </StackPanel>
+
+            <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Vertical" Margin="20,0,0,0">
+                <Label Name="CountryLabel" Content="Country: " HorizontalAlignment="Left" Style="{StaticResource BasicLabel}"></Label>
+                <ComboBox  Name="ComboBoxCountry" IsEditable="True" SelectedItem="{Binding Path=Country, UpdateSourceTrigger=PropertyChanged}" Width="100" Height="25" ItemsSource="{Binding Path=Countries}" HorizontalAlignment="Left">
+                    <ComboBox.Style>
+                        <Style TargetType="ComboBox">
+                            <Setter Property="ItemContainerStyle" Value="{StaticResource ComboBoxStyle}" />
+                        </Style>
+                    </ComboBox.Style>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="SelectionChanged">
+                            <i:InvokeCommandAction Command="{Binding LoadCitiesCommand}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="TextInput">
+                            <i:InvokeCommandAction Command="{Binding LoadCitiesCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </ComboBox>
+            </StackPanel>
+
+            <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Vertical" Margin="20,0,0,0">
+                <Label Name="CityLabel" Content="City: " HorizontalAlignment="Left" Style="{StaticResource BasicLabel}"></Label>
+                <ComboBox  Name="ComboBoxCity" IsEditable="True" SelectedItem="{Binding Path=City, UpdateSourceTrigger=PropertyChanged}" Width="100" Height="25" ItemsSource="{Binding Path=Cities}" HorizontalAlignment="Left">
+                    <ComboBox.Style>
+                        <Style TargetType="ComboBox">
+                            <Setter Property="ItemContainerStyle" Value="{StaticResource ComboBoxStyle}" />
+                        </Style>
+                    </ComboBox.Style>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="SelectionChanged">
+                            <i:InvokeCommandAction Command="{Binding FilterAccommodationsCommand}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="TextInput">
+                            <i:InvokeCommandAction Command="{Binding FilterAccommodationsCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </ComboBox>
+            </StackPanel>
+
+            <StackPanel Grid.Row="0" Grid.Column="3" Orientation="Vertical" Margin="20,0,0,0" >
+                <Label Name="TypeLabel" Content="Type: " HorizontalAlignment="Left" Style="{StaticResource BasicLabel}"></Label>
+                <ComboBox  Name="ComboBoxType" IsEditable="True" Text="{Binding Path=Type, UpdateSourceTrigger=PropertyChanged}" Width="100" Height="25" ItemsSource="{Binding Path=Types}" HorizontalAlignment="Left">
+                    <ComboBox.Style>
+                        <Style TargetType="ComboBox">
+                            <Setter Property="ItemContainerStyle" Value="{StaticResource ComboBoxStyle}" />
+                        </Style>
+                    </ComboBox.Style>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="SelectionChanged">
+                            <i:InvokeCommandAction Command="{Binding FilterAccommodationsCommand}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="TextInput">
+                            <i:InvokeCommandAction Command="{Binding FilterAccommodationsCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </ComboBox>
+            </StackPanel>
+        </Grid>
+
+        <Separator Grid.Row="2" Grid.ColumnSpan="2" VerticalAlignment="Top" Background="Black"/>
+
+        <GroupBox Header="My accommodations" Style="{StaticResource GroupBox}" Grid.Row="4" Grid.ColumnSpan="2">
+            <Grid Grid.Row="4" Grid.ColumnSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20*" />
+                    <ColumnDefinition Width="5*" />
+                </Grid.ColumnDefinitions>
+
+                <DataGrid Name="DataGridAccommodations" DataGrid.ColumnHeaderStyle="{StaticResource DataGridHeaderStyle}"  DataGrid.RowStyle="{StaticResource DataGridRowStyle}" DataGrid.CellStyle="{StaticResource DataGridCellStyle}" HorizontalAlignment="Center" RowHeaderWidth="0" ItemsSource="{Binding MyAccommodations, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" SelectionMode="Single" SelectedItem="{Binding Path=SelectedAccommodation, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="0" Margin="10,10,0,25" IsReadOnly="True" SelectionChanged="DataGridAccommodations_SelectionChanged" >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Name" Width="*">
+                            <DataGridTextColumn.Binding>
+                                <MultiBinding StringFormat="{} {0}{1}{2}">
+                                    <Binding Path="SuperOwnerMark"/>
+                                    <Binding Path="Name"/>
+                                    <Binding Path="RenovationStatus" />
+                                </MultiBinding>
+                            </DataGridTextColumn.Binding>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Country" Binding="{Binding Location.Country}" Width="*"/>
+                        <DataGridTextColumn Header="City" Binding="{Binding Location.City}" Width="*"/>
+                        <DataGridTextColumn Header="Type" Binding="{Binding Type}" Width="85"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="10*"/>
+                        <RowDefinition Height="10*"/>
+                        <RowDefinition Height="10*"/>
+                        <RowDefinition Height="10*"/>
+                        <RowDefinition Height="10*"/>
+                        <RowDefinition Height="35*"/>
+                    </Grid.RowDefinitions>
+
+                    <Button Grid.Row="0" Name="ButtonInfo" Content="Info" Style="{StaticResource StandardButtonStyle}" Margin="0" Command="{Binding OpenAccommodationInfoCommand}"/>
+                    <Button Grid.Row="1" Name="ButtonCreateNew" Content="Create new" Style="{DynamicResource StandardButtonStyle}" Margin="0" Command="{Binding CreateNewAccommodationCommand}"/>
+                    <Button Grid.Row="2" Name="ButtonRenovate" Content="Renovate" Style="{StaticResource StandardButtonStyle}" Margin="0" Command="{Binding RenovateAccommodationCommand}" IsEnabled="False"/>
+                    <Button Grid.Row="3" Name="ButtonStatistics" Content="Statistics" Style="{StaticResource StandardButtonStyle}" Margin="0" Command="{Binding AccommodationStatisticsCommand}" IsEnabled="False"/>
+                </Grid>
+            </Grid>
+        </GroupBox>
+        
+    </Grid>
+</Page>
